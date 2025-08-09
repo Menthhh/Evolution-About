@@ -58,15 +58,7 @@ export default function Page() {
                 <li>FAQs for students and educators (EN/ไทย)</li>
               </ul>
             </div>
-            <div className="rounded-2xl border p-6 shadow-sm bg-white">
-              <h3 className="font-semibold">ภาษาไทย (Thai blurb)</h3>
-              <p className="mt-2 text-slate-700">
-                เว็บไซต์นี้รวบรวมองค์ความรู้และมุมมองของอิสลามที่\nตอบโต้/ทบทวน/อธิบายทฤษฎีวิวัฒนาการ โดยคงความสุภาพและเน้นการศึกษาจากหลักฐาน\nทั้งคัมภีร์และผลงานวิชาการ เพื่อให้ผู้อ่านเข้าใจประเด็นที่สอดคล้องหรือขัดแย้งกับอากีดะฮ์\nและจริยธรรมอิสลาม
-              </p>
-              <div className="mt-4 text-xs text-slate-500">
-                หมายเหตุ: เนื้อหาเป็นการให้ความรู้ทั่วไป ไม่ใช่คำวินิจฉัยทางศาสนา (fatwa)
-              </div>
-            </div>
+            
           </div>
         </div>
       </section>
