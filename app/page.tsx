@@ -6,7 +6,7 @@ export default function Page() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <a href="#" className="flex items-center gap-2 text-xl font-bold tracking-tight">
             <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-sky-500 text-white font-black">EV</span>
-            <span>Evbolution</span>
+            <span>Evolution About</span>
           </a>
           <nav className="hidden md:flex items-center gap-6 text-sm">
             <a href="#about" className="hover:text-sky-600">About</a>
