@@ -145,7 +145,7 @@ class EvolutionVideoScraper {
         let videoUrl = "";
         let title = "";
 
-        if (element.tagName === "iframe") {
+        if ((element as any).tagName === "iframe") {
           videoUrl = $element.attr("src") || "";
           // Try to find title from nearby elements
           title =
@@ -158,7 +158,7 @@ class EvolutionVideoScraper {
               .trim() ||
             $element.parent().prev("h1, h2, h3").text().trim() ||
             "วิดีโอจาก Evolution News Thailand";
-        } else if (element.tagName === "a") {
+        } else if ((element as unknown).tagName === "a") {
           videoUrl = $element.attr("href") || "";
           title = $element.text().trim() || $element.attr("title") || "";
         }

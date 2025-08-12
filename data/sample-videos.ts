@@ -38,6 +38,16 @@ export const sampleVideos: Video[] = [
     views: 25168,
   },
   {
+    id: "ปรัชญา วิทยาศาสตร์และข้อจำกัดของวิทยาศาสตร์ โดย อารีฟ ดะวะฮฺ-UDtH2bqBRVM",
+    title: "ปรัชญา วิทยาศาสตร์และข้อจำกัดของวิทยาศาสตร์ โดย อารีฟ ดะวะฮฺ",
+    thumbnail: "https://img.youtube.com/vi/UDtH2bqBRVM/maxresdefault.jpg",
+    duration: "1:49",
+    youtubeId: "UDtH2bqBRVM",
+    description:
+      "วิดีโอเกี่ยวกับhttps://youtu.be/uwsEIVXX0AU... จาก Evolution News Thailand",
+    views: 5246,
+  },
+  {
     id: "พระเจ้า ศาสนาและทฤษฎีวิวัฒนาการ | โดย อามีน ลอนา และ อารีฟ ดะวะฮ์-3x-bqYQniVM",
     title: "ปรัชญา วิทยาศาสตร์และข้อจำกัดของวิทยาศาสตร์ โดย อารีฟ ดะวะฮฺ",
     thumbnail: "https://img.youtube.com/vi/3x-bqYQniVM/maxresdefault.jpg",
@@ -45,7 +55,7 @@ export const sampleVideos: Video[] = [
     youtubeId: "3x-bqYQniVM",
     description:
       "วิดีโอเกี่ยวกับhttps://youtu.be/uwsEIVXX0AU... จาก Evolution News Thailand",
-    views: 11100,
+    views: 11164,
   },
   {
     id: "โมเลกุลบ่งชี้ถึงอะไร? | Dr. Marcos Eberlin--cI9MZ1jB5w",
@@ -55,6 +65,6 @@ export const sampleVideos: Video[] = [
     youtubeId: "-cI9MZ1jB5w",
     description:
       "วิดีโอเกี่ยวกับhttps://youtu.be/uwsEIVXX0AU... จาก Evolution News Thailand",
-    views: 2200,
+    views: 2275,
   },
 ];
