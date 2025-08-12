@@ -8,13 +8,13 @@ import { SocialLink } from "@/types/evolution-homepage";
  */
 export const sampleSocialLinks: SocialLink[] = [
   {
-    "platform": "facebook",
-    "url": "https://www.facebook.com/Evolutionnewsth",
-    "label": "PAGE"
+    platform: "facebook",
+    url: "https://www.facebook.com/EvolutionAbout",
+    label: "PAGE",
   },
   {
-    "platform": "youtube",
-    "url": "https://www.youtube.com/c/EvolutionNewsTHOfficial",
-    "label": "YOUTUBE"
-  }
+    platform: "youtube",
+    url: "https://www.youtube.com/@evolution-about7798",
+    label: "YOUTUBE",
+  },
 ];

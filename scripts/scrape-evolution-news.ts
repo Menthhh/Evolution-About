@@ -82,11 +82,11 @@ class EvolutionNewsScraper {
    */
   private extractArticleData(
     $: cheerio.CheerioAPI,
-    element: cheerio.Element,
+    element: any,
     index: number
   ): ScrapedArticle | null {
     try {
-      const $article = $(element);
+      const $article = $(element as unknown);
 
       // Extract title
       const titleElement = $article.find(
