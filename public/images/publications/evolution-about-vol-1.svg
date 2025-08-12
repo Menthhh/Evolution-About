@@ -1,0 +1,11 @@
+<svg width="200" height="280" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="280" fill="#1a1a1a"/>
+  <rect x="10" y="10" width="180" height="260" fill="#2a2a2a" stroke="#60a5fa" stroke-width="2"/>
+  <text x="100" y="40" text-anchor="middle" fill="#60a5fa" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Evolution About</text>
+  <text x="100" y="60" text-anchor="middle" fill="#9ca3af" font-family="Arial, sans-serif" font-size="10">เล่ม 1</text>
+  <text x="100" y="140" text-anchor="middle" fill="#9ca3af" font-family="Arial, sans-serif" font-size="9">ความรู้พื้นฐาน</text>
+  <text x="100" y="155" text-anchor="middle" fill="#9ca3af" font-family="Arial, sans-serif" font-size="9">เรื่องวิวัฒนาการ</text>
+  <circle cx="100" cy="200" r="20" fill="none" stroke="#60a5fa" stroke-width="1"/>
+  <path d="M85 200 Q100 185 115 200 Q100 215 85 200" fill="#60a5fa" opacity="0.3"/>
+  <text x="100" y="250" text-anchor="middle" fill="#9ca3af" font-family="Arial, sans-serif" font-size="8">2024</text>
+</svg>

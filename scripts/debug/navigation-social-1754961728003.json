@@ -1,0 +1,50 @@
+{
+  "navigation": [
+    {
+      "id": "youtube",
+      "label": "YOUTUBE",
+      "href": "https://www.youtube.com/c/EvolutionNewsTHOfficial",
+      "isActive": false
+    },
+    {
+      "id": "page",
+      "label": "PAGE",
+      "href": "https://www.facebook.com/Evolutionnewsth",
+      "isActive": false
+    },
+    {
+      "id": "spotify",
+      "label": "SPOTIFY",
+      "href": "https://open.spotify.com/show/21fydm39mMbaMnXCYnamzh?si=3a56bc36775448ce",
+      "isActive": false
+    },
+    {
+      "id": "anchor",
+      "label": "ANCHOR",
+      "href": "https://anchor.fm/evolution-news-th/episodes/19-e1gvpu5",
+      "isActive": false
+    },
+    {
+      "id": "soundcloud",
+      "label": "SOUNDCLOUD",
+      "href": "https://soundcloud.com/evolution-news-th",
+      "isActive": false
+    }
+  ],
+  "socialLinks": [
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/Evolutionnewsth",
+      "label": "PAGE"
+    },
+    {
+      "platform": "youtube",
+      "url": "https://www.youtube.com/c/EvolutionNewsTHOfficial",
+      "label": "YOUTUBE"
+    }
+  ],
+  "metadata": {
+    "scrapedAt": "2025-08-12T01:22:08.001Z",
+    "source": "https://evolutionnewsthailand.wordpress.com"
+  }
+}

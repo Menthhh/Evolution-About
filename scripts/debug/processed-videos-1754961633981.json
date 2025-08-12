@@ -1,0 +1,45 @@
+{
+  "videos": [
+    {
+      "id": "การศึกษาพันธุกรรมและวิวัฒนาการ-H6HqCf44cTo",
+      "title": "การศึกษาพันธุกรรมและวิวัฒนาการ",
+      "thumbnail": "https://img.youtube.com/vi/H6HqCf44cTo/maxresdefault.jpg",
+      "duration": "5:44",
+      "youtubeId": "H6HqCf44cTo",
+      "description": "วิดีโอเกี่ยวกับhttps://www.youtube.com/watch?v=H6HqCf44cTo&t=1223... จาก Evolution News Thailand",
+      "views": 14656
+    },
+    {
+      "id": "วิทยาศาสตร์สมัยใหม่และทฤษฎีวิว-Iv3fnX-Wxm0",
+      "title": "วิทยาศาสตร์สมัยใหม่และทฤษฎีวิวัฒนาการ",
+      "thumbnail": "https://img.youtube.com/vi/Iv3fnX-Wxm0/maxresdefault.jpg",
+      "duration": "17:13",
+      "youtubeId": "Iv3fnX-Wxm0",
+      "description": "วิดีโอเกี่ยวกับhttps://youtu.be/Iv3fnX-Wxm0... จาก Evolution News Thailand",
+      "views": 26039
+    },
+    {
+      "id": "วิทยาศาสตร์สมัยใหม่และทฤษฎีวิว-uwsEIVXX0AU",
+      "title": "วิทยาศาสตร์สมัยใหม่และทฤษฎีวิวัฒนาการ",
+      "thumbnail": "https://img.youtube.com/vi/uwsEIVXX0AU/maxresdefault.jpg",
+      "duration": "11:10",
+      "youtubeId": "uwsEIVXX0AU",
+      "description": "วิดีโอเกี่ยวกับhttps://youtu.be/uwsEIVXX0AU... จาก Evolution News Thailand",
+      "views": 25168
+    },
+    {
+      "id": "evolution-theory-basics",
+      "title": "ทฤษฎีวิวัฒนาการและหลักฐานทางวิทยาศาสตร์",
+      "thumbnail": "/images/videos/evolution-theory.svg",
+      "duration": "15:30",
+      "youtubeId": "dQw4w9WgXcQ",
+      "description": "วิดีโอแนะนำทฤษฎีวิวัฒนาการและหลักฐานทางวิทยาศาสตร์ที่สนับสนุน",
+      "views": 8500
+    }
+  ],
+  "metadata": {
+    "scrapedAt": "2025-08-12T01:20:33.980Z",
+    "totalVideos": 4,
+    "source": "https://evolutionnewsthailand.wordpress.com"
+  }
+}
