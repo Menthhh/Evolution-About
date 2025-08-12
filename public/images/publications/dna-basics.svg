@@ -1,0 +1,15 @@
+<svg width="200" height="280" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="280" fill="#1a1a1a"/>
+  <rect x="10" y="10" width="180" height="260" fill="#2a2a2a" stroke="#ef4444" stroke-width="2"/>
+  <text x="100" y="40" text-anchor="middle" fill="#ef4444" font-family="Arial, sans-serif" font-size="11" font-weight="bold">DNA และพันธุกรรม</text>
+  <text x="100" y="140" text-anchor="middle" fill="#9ca3af" font-family="Arial, sans-serif" font-size="9">พื้นฐานสู่ความเข้าใจ</text>
+  <g transform="translate(70, 180)">
+    <path d="M0 0 L10 5 L20 0 L30 5 L40 0 L50 5 L60 0" stroke="#ef4444" stroke-width="2" fill="none"/>
+    <path d="M0 20 L10 15 L20 20 L30 15 L40 20 L50 15 L60 20" stroke="#ef4444" stroke-width="2" fill="none"/>
+    <line x1="0" y1="0" x2="0" y2="20" stroke="#ef4444" stroke-width="1"/>
+    <line x1="20" y1="0" x2="20" y2="20" stroke="#ef4444" stroke-width="1"/>
+    <line x1="40" y1="0" x2="40" y2="20" stroke="#ef4444" stroke-width="1"/>
+    <line x1="60" y1="0" x2="60" y2="20" stroke="#ef4444" stroke-width="1"/>
+  </g>
+  <text x="100" y="250" text-anchor="middle" fill="#9ca3af" font-family="Arial, sans-serif" font-size="8">2023</text>
+</svg>
