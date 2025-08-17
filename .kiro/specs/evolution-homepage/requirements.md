@@ -2,74 +2,85 @@
 
 ## Introduction
 
-This feature involves creating a homepage for the Evolution About website that replicates the design and layout shown in the reference image. The homepage will be a static UI implementation focused on presenting scientific and educational content in a modern, dark-themed interface with component-based architecture. The page will display articles, videos, publications, and provide navigation and search functionality.
+This feature involves updating the Evolution About homepage layout to match a specific two-column design with a main content area (left column) and sidebar (right column). The layout will display articles in a 3-column grid, videos with a large featured video followed by smaller thumbnails, books in a 3-column grid, and a comprehensive sidebar with search, categories, latest content, popular content, and podcast sections.
 
-**Technology Update**: The implementation uses Tailwind CSS with shadcn/ui component library instead of CSS Modules for styling, providing a utility-first approach with consistent, accessible components.
+**Technology Update**: The implementation uses Tailwind CSS with shadcn/ui component library for styling, providing a utility-first approach with consistent, accessible components.
 
 ## Requirements
 
 ### Requirement 1
 
-**User Story:** As a visitor, I want to see a professional homepage with clear navigation, so that I can easily browse the Evolution About content.
+**User Story:** As a visitor, I want to see a two-column layout with main content and sidebar, so that I can easily navigate between primary content and supplementary features.
 
 #### Acceptance Criteria
 
-1. WHEN the page loads THEN the system SHALL display a dark-themed header with the Evolution About logo and DNA helix imagery
-2. WHEN the page loads THEN the system SHALL display a horizontal navigation menu with Thai language menu items
-3. WHEN the page loads THEN the system SHALL display a search bar in the top right corner of the header
-4. WHEN a user views the header THEN the system SHALL maintain the header position and styling consistently
+1. WHEN the page loads THEN the system SHALL display a two-column layout with main content on the left (approximately 70% width) and sidebar on the right (approximately 30% width)
+2. WHEN the layout renders THEN the system SHALL maintain consistent spacing between the main content and sidebar
+3. WHEN viewed on desktop THEN the system SHALL keep both columns visible side by side
+4. WHEN viewed on mobile devices THEN the system SHALL stack the sidebar below the main content
 
 ### Requirement 2
 
-**User Story:** As a visitor, I want to see featured articles prominently displayed, so that I can quickly access the most important content.
+**User Story:** As a visitor, I want to see articles displayed in a 3-column grid in the main content area, so that I can browse multiple articles efficiently.
 
 #### Acceptance Criteria
 
-1. WHEN the page loads THEN the system SHALL display a grid of 3 featured article cards in the main content area
+1. WHEN the articles section loads THEN the system SHALL display articles in a 3-column grid layout
 2. WHEN displaying article cards THEN the system SHALL show thumbnail images, titles, author information, and engagement metrics for each article
 3. WHEN article cards are displayed THEN the system SHALL use consistent card styling with proper spacing and hover effects
-4. WHEN the content loads THEN the system SHALL display articles with Thai language text and proper typography
+4. WHEN the articles grid renders THEN the system SHALL maintain equal column widths and consistent row heights
 
 ### Requirement 3
 
-**User Story:** As a visitor, I want to see video content integrated into the page, so that I can access multimedia educational materials.
+**User Story:** As a visitor, I want to see video content with a large featured video at the top followed by smaller video thumbnails, so that I can access both primary and secondary video content.
 
 #### Acceptance Criteria
 
-1. WHEN the page loads THEN the system SHALL display a video section with embedded YouTube content
-2. WHEN displaying videos THEN the system SHALL show video thumbnails with play button overlays
-3. WHEN videos are presented THEN the system SHALL include video titles and descriptions in Thai
-4. WHEN the video section loads THEN the system SHALL maintain proper aspect ratios and responsive behavior
+1. WHEN the videos section loads THEN the system SHALL display a large embedded YouTube video at the top of the section
+2. WHEN the featured video is displayed THEN the system SHALL show the video title, description, and proper aspect ratio
+3. WHEN below the featured video THEN the system SHALL display smaller video thumbnails in a horizontal row
+4. WHEN displaying video thumbnails THEN the system SHALL show video titles and play button overlays
 
 ### Requirement 4
 
-**User Story:** As a visitor, I want to see a publications gallery, so that I can browse available books and materials.
+**User Story:** As a visitor, I want to see book covers displayed in a 3-column grid with titles, so that I can browse available publications.
 
 #### Acceptance Criteria
 
-1. WHEN the page loads THEN the system SHALL display a publications section with book cover thumbnails
-2. WHEN displaying publications THEN the system SHALL show Evolution About branded materials in a grid layout
-3. WHEN publications are shown THEN the system SHALL include proper spacing and hover effects for each item
-4. WHEN the publications section loads THEN the system SHALL display multiple volumes or editions clearly
+1. WHEN the books section loads THEN the system SHALL display book covers in a 3-column grid layout
+2. WHEN displaying book covers THEN the system SHALL show the cover image and book title below each cover
+3. WHEN book items are displayed THEN the system SHALL maintain consistent spacing and alignment
+4. WHEN hovering over book covers THEN the system SHALL provide visual feedback with hover effects
 
 ### Requirement 5
 
-**User Story:** As a visitor, I want to see social media integration and additional navigation options, so that I can connect with the platform on multiple channels.
+**User Story:** As a visitor, I want to see a comprehensive sidebar with search and navigation features, so that I can quickly find and access different types of content.
 
 #### Acceptance Criteria
 
-1. WHEN the page loads THEN the system SHALL display social media icons in the sidebar area
-2. WHEN social media elements are shown THEN the system SHALL include Facebook and other relevant platform links
-3. WHEN the sidebar loads THEN the system SHALL display additional navigation or featured content
-4. WHEN sidebar elements are presented THEN the system SHALL maintain consistent styling with the overall theme
+1. WHEN the sidebar loads THEN the system SHALL display a search box at the top with social media icon buttons
+2. WHEN the sidebar renders THEN the system SHALL show a categories list for content organization
+3. WHEN the sidebar displays THEN the system SHALL include a "Latest" section with links to recent articles and videos
+4. WHEN the sidebar shows THEN the system SHALL include a "Popular" section with links to most popular content
 
 ### Requirement 6
 
-**User Story:** As a visitor using any device, I want the page to display properly on different screen sizes, so that I can access content from desktop, tablet, or mobile devices.
+**User Story:** As a visitor interested in audio content, I want to see a podcast section in the sidebar, so that I can access audio episodes with play functionality.
 
 #### Acceptance Criteria
 
-1. WHEN the page is viewed on different screen sizes THEN the system SHALL adjust the grid layouts appropriately
-2. WHEN viewed on mobile devices THEN the system SHALL stack content vertically and maintain readability
-3. WHEN the layout adapts THEN the system SHALL preserve the visual hierarchy and component relationships
-4. WHEN responsive behavior occurs THEN the system SHALL maintain the dark theme and styling consistency
+1. WHEN the sidebar loads THEN the system SHALL display a podcast section with a list of audio episodes
+2. WHEN podcast episodes are shown THEN the system SHALL include episode titles and play buttons for each episode
+3. WHEN displaying podcast content THEN the system SHALL maintain consistent styling with other sidebar sections
+4. WHEN play buttons are clicked THEN the system SHALL provide audio playback functionality
+
+### Requirement 7
+
+**User Story:** As a visitor using any device, I want the layout to be responsive and maintain usability across different screen sizes, so that I can access content from desktop, tablet, or mobile devices.
+
+#### Acceptance Criteria
+
+1. WHEN viewed on desktop THEN the system SHALL maintain the two-column layout with proper proportions
+2. WHEN viewed on tablet THEN the system SHALL adjust grid layouts to 2 columns for articles and books
+3. WHEN viewed on mobile THEN the system SHALL stack all content vertically with single-column layouts
+4. WHEN the layout adapts THEN the system SHALL preserve content hierarchy and maintain readability

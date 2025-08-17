@@ -45,7 +45,7 @@ export const FeaturedArticles: React.FC<FeaturedArticlesProps> = ({
                 `animation-delay-${index * 100}`
               )}
             >
-              <ArticleCard article={article} size="medium" />
+              <ArticleCard article={article} />
             </div>
           ))}
         </div>

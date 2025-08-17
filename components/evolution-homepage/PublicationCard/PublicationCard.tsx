@@ -30,11 +30,11 @@ const PublicationCard: React.FC<PublicationCardProps> = ({ publication }) => {
           <span className="sm:hidden">EA</span>
         </div>
 
-        {/* Volume badge - responsive sizing */}
-        {publication.volume && (
+        {/* Author badge - responsive sizing */}
+        {publication.author && (
           <div className="absolute top-1 left-1 sm:top-2 sm:left-2 bg-background/90 text-foreground text-xs px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-full font-medium">
-            <span className="hidden sm:inline">เล่ม {publication.volume}</span>
-            <span className="sm:hidden">{publication.volume}</span>
+            <span className="hidden sm:inline">{publication.author}</span>
+            <span className="sm:hidden">ผู้เขียน</span>
           </div>
         )}
       </div>

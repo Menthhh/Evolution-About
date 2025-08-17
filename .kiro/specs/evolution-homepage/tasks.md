@@ -1,197 +1,174 @@
 # Implementation Plan
 
-- [x] 1. Set up project structure and base configuration
+- [x] 1. Create updated TypeScript interfaces for new layout structure
 
-  - Create React TypeScript project structure with necessary folders
-  - Set up Tailwind CSS and shadcn/ui configuration for component styling
-  - Create utility classes and CSS variables for the dark theme
-  - _Requirements: 1.1, 6.4_
+  - Define Book interface for books section with cover image and title properties
+  - Create Category interface for sidebar categories section
+  - Define ContentItem interface for latest and popular sections
+  - Create PodcastEpisode interface with audio playback properties
+  - Update existing interfaces to match new layout requirements
+  - _Requirements: 2.1, 4.1, 5.2, 5.3, 5.4, 6.1_
 
-- [x] 2. Create core TypeScript interfaces and types
+- [x] 2. Implement two-column main layout structure
 
-  - Define Article, Video, Publication, and SocialLink interfaces
-  - Create NavItem and theme configuration types
-  - Set up component prop interfaces for type safety
-  - _Requirements: 2.2, 3.3, 4.2, 5.2_
+  - Create MainLayout component with CSS Grid two-column layout using `grid-cols-[1fr_400px]`
+  - Implement responsive behavior that stacks columns on mobile devices
+  - Add proper gap spacing between main content and sidebar columns
+  - Set up semantic HTML structure with proper ARIA labels for accessibility
+  - _Requirements: 1.1, 1.2, 7.1_
 
-- [x] 3. Implement base layout components
+- [x] 3. Build main content area (left column) container
 
-  - Build the main page wrapper with proper semantic HTML structure
-  - Implement responsive grid layout for main content areas
-  - Set up CSS Grid for header, main content, and sidebar positioning
-  - _Requirements: 6.1, 6.3_
+  - Create MainContent component as flex column container for content sections
+  - Implement proper spacing between articles, videos, and books sections
+  - Add section dividers and consistent typography for section titles
+  - Ensure proper responsive behavior for main content area
+  - _Requirements: 1.1, 1.3, 7.3_
 
-- [x] 3.2 Create Header component with navigation structure
+- [x] 4. Implement articles section with 3-column grid
 
-  - Build header container with Tailwind dark theme utilities
-  - Implement responsive header layout using Tailwind Flexbox classes
-  - Add sticky positioning and backdrop blur effects with Tailwind utilities
-  - _Requirements: 1.1, 1.4_
+- [x] 4.1 Create ArticlesSection component with grid layout
 
-- [x] 4. Build navigation and branding components
+  - Build articles container with `grid-cols-1 md:grid-cols-2 lg:grid-cols-3` responsive grid
+  - Add section title "บทความ" with proper Thai typography
+  - Implement proper spacing and alignment for article cards
+  - _Requirements: 2.1, 2.4, 7.2_
 
-- [x] 4.1 Implement Logo component
+- [x] 4.2 Update ArticleCard component for grid display
 
-  - Create logo component with Evolution About branding using Tailwind utilities
-  - Add DNA helix imagery with responsive sizing using Tailwind classes
-  - Implement hover effects and transitions with Tailwind utilities
-  - _Requirements: 1.1_
-
-- [x] 4.2 Create Navigation component with menu items
-
-  - Build horizontal navigation menu with Thai language support
-  - Implement active state styling and hover effects
-  - Add responsive navigation collapse for mobile devices
-  - _Requirements: 1.2, 6.2_
-
-- [x] 4.3 Implement SearchBar component
-
-  - Create search input with Tailwind dark theme utilities and focus states
-  - Position search bar using Tailwind Flexbox utilities
-  - Integrate Lucide React Search icon with proper positioning
-  - _Requirements: 1.3_
-
-- [x] 5. Create article display components
-
-- [x] 5.1 Build ArticleCard component
-
-  - Create article card using evolutionClasses.card.base utility
-  - Implement Next.js Image component for optimized thumbnails
-  - Add Lucide React icons for engagement metrics (Heart, MessageCircle, Clock)
+  - Modify existing ArticleCard to work within 3-column grid layout
+  - Ensure consistent card heights and proper image aspect ratios
+  - Add hover effects with transform and shadow transitions
+  - Implement responsive text sizing for different screen sizes
   - _Requirements: 2.1, 2.2, 2.3_
 
-- [x] 5.2 Implement FeaturedArticles container component
+- [x] 5. Build videos section with featured video and thumbnails
 
-  - Create grid layout using evolutionClasses.grid.articles utility
-  - Implement responsive grid with Tailwind responsive prefixes
-  - Add proper spacing using Tailwind spacing utilities
-  - _Requirements: 2.1, 2.4, 6.1_
+- [x] 5.1 Create VideosSection container component
 
-- [x] 6. Build video content components
+  - Build videos section with title "วิดีโอ" and proper spacing
+  - Implement layout structure for featured video at top and thumbnails below
+  - Add responsive behavior for video section on different screen sizes
+  - _Requirements: 3.1, 3.2, 7.2_
 
-- [x] 6.1 Create VideoCard component
+- [x] 5.2 Implement FeaturedVideo component with YouTube embed
 
-  - Build video thumbnail display with play button overlay
-  - Implement proper aspect ratio maintenance for video content
-  - Add video title and description styling with Thai text support
-  - _Requirements: 3.1, 3.2, 3.3_
+  - Create large YouTube video embed with responsive 16:9 aspect ratio
+  - Add video title and description display below the embedded player
+  - Implement proper loading states and error handling for video embeds
+  - Ensure video player works correctly on mobile devices
+  - _Requirements: 3.1, 3.2_
 
-- [x] 6.2 Implement VideoSection container component
+- [x] 5.3 Create VideoThumbnails horizontal scroll component
 
-  - Create video section layout with multiple video cards
-  - Implement responsive video grid that adapts to screen sizes
-  - Add section title and proper spacing between video items
-  - _Requirements: 3.1, 3.4, 6.1_
+  - Build horizontal scrolling container for smaller video thumbnails
+  - Implement video thumbnail cards with play button overlays
+  - Add smooth scrolling behavior and proper touch interaction for mobile
+  - Create consistent thumbnail sizing and spacing
+  - _Requirements: 3.3, 3.4_
 
-- [x] 7. Create publications gallery components
+- [x] 6. Implement books section with 3-column grid
 
-- [x] 7.1 Build PublicationCard component
+- [x] 6.1 Create BooksSection component with grid layout
 
-  - Create publication card with book cover thumbnail display
-  - Implement hover effects and proper image aspect ratios
-  - Add Evolution About branding elements to publication cards
+  - Build books container with `grid-cols-2 md:grid-cols-3` responsive grid
+  - Add section title "หนังสือ" with consistent typography
+  - Implement proper spacing between book items
+  - _Requirements: 4.1, 4.2, 7.2_
+
+- [x] 6.2 Build BookCard component for book covers and titles
+
+  - Create book card with cover image and title below
+  - Implement consistent aspect ratio for book cover images
+  - Add hover effects with scale transform animation
+  - Ensure proper text wrapping and truncation for long book titles
   - _Requirements: 4.1, 4.2, 4.3_
 
-- [x] 7.2 Implement PublicationsGallery container component
+- [x] 7. Create comprehensive sidebar (right column) structure
 
-  - Create grid layout for multiple publication cards
-  - Implement responsive grid that shows different columns per screen size
-  - Add proper spacing and alignment for publication items
-  - _Requirements: 4.1, 4.4, 6.1_
+- [x] 7.1 Build Sidebar container component
 
-- [x] 8. Build sidebar and social components
+  - Create sidebar with fixed 400px width on desktop, full width on mobile
+  - Implement vertical stack layout with consistent spacing between sections
+  - Add responsive behavior that moves sidebar below content on mobile
+  - Set up proper background and border styling for sidebar
+  - _Requirements: 1.2, 5.1, 7.1, 7.4_
 
-- [x] 8.1 Create SocialLinks component
+- [x] 7.2 Implement SearchSection with search box and social icons
 
-  - Build social media icons using Lucide React icon components
-  - Implement platform-specific styling with Tailwind utilities
-  - Add hover effects and transitions using Tailwind classes
+  - Create search input component with search icon and proper styling
+  - Build row of social media icon buttons below search box
+  - Implement hover effects and proper accessibility for social icons
+  - Add search functionality with proper form handling
   - _Requirements: 5.1, 5.2_
 
-- [x] 8.2 Implement Sidebar container component
+- [x] 8. Build sidebar content sections
 
-  - Create sidebar layout using shadcn/ui Card components
-  - Implement responsive sidebar with Tailwind Grid utilities
-  - Add consistent styling using Tailwind theme utilities
-  - _Requirements: 5.3, 5.4, 6.2_
+- [ ] 8. Build sidebar content sections
+
+- [x] 8.1 Create CategoriesSection component
+
+  - Build categories list with proper Thai language category names
+  - Implement category links with hover effects and active states
+  - Add category item counts if available
+  - Ensure proper spacing and typography for category list
+  - _Requirements: 5.2_
+
+- [x] 8.2 Implement LatestSection for recent content
+
+  - Create list of recent articles and videos with timestamps
+  - Add small thumbnail images for latest content items
+  - Implement proper link styling and hover effects
+  - Show content type indicators (article vs video)
+  - _Requirements: 5.3_
+
+- [x] 8.3 Build PopularSection for popular content
+
+  - Create list of popular content with view counts or engagement metrics
+  - Add popularity indicators (view counts, likes, etc.)
+  - Implement consistent styling with LatestSection
+  - Show trending or popular content badges
+  - _Requirements: 5.4_
+
+- [x] 8.4 Create PodcastSection with audio playback
+
+  - Build list of podcast episodes with titles and durations
+  - Implement play buttons for each podcast episode
+  - Add HTML5 audio player integration for podcast playback
+  - Create progress indicators and playback controls
+  - _Requirements: 6.1, 6.2, 6.3_
 
 - [x] 9. Implement responsive design and mobile optimization
 
-- [x] 9.1 Add mobile-responsive Tailwind utilities
+- [x] 9.1 Add responsive breakpoints and mobile layout
 
-  - Implement responsive design using Tailwind responsive prefixes (sm:, md:, lg:)
-  - Use Tailwind's mobile-first responsive design approach
-  - Add touch-friendly sizing using Tailwind spacing and sizing utilities
-  - _Requirements: 6.1, 6.2_
+  - Implement mobile-first responsive design with proper breakpoints
+  - Ensure two-column layout stacks properly on mobile devices
+  - Adjust grid layouts for tablet and mobile screen sizes
+  - Test touch interactions and mobile usability
+  - _Requirements: 7.1, 7.2, 7.3, 7.4_
 
-- [x] 9.2 Optimize layout stacking for mobile devices
+- [x] 9.2 Optimize sidebar for mobile devices
 
-  - Implement vertical stacking of content sections on mobile
-  - Adjust grid layouts to single column on small screens
-  - Maintain visual hierarchy and readability on mobile devices
-  - _Requirements: 6.2, 6.3_
+  - Implement collapsible sidebar sections for mobile
+  - Ensure proper touch targets for all interactive elements
+  - Add mobile-specific spacing and typography adjustments
+  - Test horizontal scrolling for video thumbnails on mobile
+  - _Requirements: 7.3, 7.4_
 
-- [x] 10. Apply dark theme styling and visual polish
+- [x] 10. Create sample data for new layout sections
 
-- [x] 10.1 Implement consistent dark theme across all components
+  - Generate sample book data with cover images and titles
+  - Create sample category data for sidebar categories section
+  - Build sample podcast episode data with audio URLs and metadata
+  - Generate sample content for latest and popular sections
+  - _Requirements: 4.1, 5.2, 5.3, 5.4, 6.1_
 
-  - Apply Tailwind dark theme utilities and CSS custom properties
-  - Implement consistent typography using evolutionClasses.heading utilities
-  - Add subtle shadows and borders using Tailwind shadow and border utilities
-  - _Requirements: 1.4, 2.3, 6.4_
+- [x] 11. Integrate all components and test complete layout
 
-- [x] 10.2 Add interactive states and animations
-
-  - Implement hover effects using Tailwind hover: prefixes and transform utilities
-  - Add smooth transitions using Tailwind transition utilities
-  - Create loading states using Tailwind animation utilities
-  - _Requirements: 2.3, 4.3_
-
-- [x] 11. Integrate sample content and finalize layout
-
-  - Add sample Thai language content for all text elements
-  - Implement placeholder images for articles, videos, and publications
-  - Test all components together in the complete homepage layout
-  - _Requirements: 2.4, 3.3, 4.4_
-
-- [x] 12. Scrape content from Evolution News Thailand website
-
-- [x] 12.1 Create web scraping utility for Evolution News Thailand
-
-  - Build a Node.js script to scrape content from https://evolutionnewsthailand.wordpress.com/
-  - Extract article titles, excerpts, publication dates, and thumbnail images
-  - Handle Thai language content encoding and special characters properly
-  - Implement error handling and rate limiting for respectful scraping
-  - _Requirements: 2.1, 2.2, 2.4_
-
-- [x] 12.2 Extract and structure article data from scraped content
-
-  - Parse HTML content to extract article metadata (title, author, date, excerpt)
-  - Download and optimize thumbnail images for local storage
-  - Convert scraped data to match existing Article interface structure
-  - Generate unique IDs and proper href paths for each article
-  - _Requirements: 2.1, 2.2, 2.3_
-
-- [x] 12.3 Update sample-articles.ts with real scraped content
-
-  - Replace existing sample articles with real content from Evolution News Thailand
-  - Maintain proper TypeScript typing and interface compliance
-  - Ensure Thai language content displays correctly with proper encoding
-  - Add appropriate fallback data for missing fields (author, read time, engagement metrics)
-  - _Requirements: 2.1, 2.2, 2.4_
-
-- [x] 12.4 Extract video content and update sample-videos.ts
-
-  - Identify and extract embedded YouTube videos from WordPress posts
-  - Parse video titles, descriptions, and thumbnail URLs
-  - Extract video duration and view counts where available
-  - Update sample-videos.ts with real video content from the site
-  - _Requirements: 3.1, 3.2, 3.3_
-
-- [x] 12.5 Update navigation and social links with real data
-
-  - Extract actual navigation menu structure from the WordPress site
-  - Identify real social media links and contact information
-  - Update sample-navigation.ts and sample-social-links.ts with authentic data
-  - Ensure all links are functional and properly formatted
-  - _Requirements: 1.2, 5.1, 5.2_
+  - Combine all components into the complete two-column homepage layout
+  - Test responsive behavior across all screen sizes and devices
+  - Verify proper spacing, alignment, and visual hierarchy
+  - Ensure all interactive elements work correctly (search, play buttons, links)
+  - Test Thai language content display and typography
+  - _Requirements: 1.1, 1.2, 1.3, 1.4, 7.1, 7.2, 7.3, 7.4_
