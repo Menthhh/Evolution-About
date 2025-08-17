@@ -7,7 +7,7 @@ import { Article } from "@/types/evolution-homepage";
  */
 export const sampleArticles: Article[] = [
   {
-    id: "neodarwinism-ต้องกลายพันธุ์เพื่อความอยู่รอด-ในยุคท-20220614",
+    id: "neodarwinism-",
     title:
       "Neo-Darwinism ต้องกลายพันธุ์เพื่อความอยู่รอด! ในยุคที่ถูกท้าทายด้วยวิทยาศาสตร์สมัยใหม่",
     author: "Evolution News Thailand",
