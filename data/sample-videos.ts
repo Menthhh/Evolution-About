@@ -8,33 +8,31 @@ import { Video } from "@/types/evolution-homepage";
  */
 export const sampleVideos: Video[] = [
   {
-    id: "การศึกษาพันธุกรรมและวิวัฒนาการ-H6HqCf44cTo",
+    id: "การศึกษาพันธุกรรมและวิวัฒนาการ-q75o2EzbfkM",
     title: "การศึกษาพันธุกรรมและวิวัฒนาการ",
-    thumbnail: "https://img.youtube.com/vi/H6HqCf44cTo/maxresdefault.jpg",
-    duration: "5:44",
-    youtubeId: "H6HqCf44cTo",
+    thumbnail: "https://img.youtube.com/vi/q75o2EzbfkM/maxresdefault.jpg",
+    duration: "39:04",
+    youtubeId: "q75o2EzbfkM",
     description:
-      "วิดีโอเกี่ยวกับhttps://www.youtube.com/watch?v=H6HqCf44cTo&t=1223... จาก Evolution News Thailand",
+      "วิดีโอการศึกษาเกี่ยวกับพันธุกรรมและวิวัฒนาการ สำหรับการเรียนรู้วิทยาศาสตร์",
     views: 14656,
   },
   {
-    id: "วิทยาศาสตร์สมัยใหม่และทฤษฎีวิว-Iv3fnX-Wxm0",
+    id: "วิทยาศาสตร์สมัยใหม่และทฤษฎีวิว--cI9MZ1jB5w",
     title: "วิทยาศาสตร์สมัยใหม่และทฤษฎีวิวัฒนาการ",
-    thumbnail: "https://img.youtube.com/vi/Iv3fnX-Wxm0/maxresdefault.jpg",
+    thumbnail: "https://img.youtube.com/vi/-cI9MZ1jB5w/maxresdefault.jpg",
     duration: "17:13",
-    youtubeId: "Iv3fnX-Wxm0",
-    description:
-      "วิดีโอเกี่ยวกับhttps://youtu.be/Iv3fnX-Wxm0... จาก Evolution News Thailand",
+    youtubeId: "-cI9MZ1jB5w",
+    description: "วิดีโอการศึกษาเกี่ยวกับวิทยาศาสตร์สมัยใหม่และทฤษฎีวิวัฒนาการ",
     views: 26039,
   },
   {
-    id: "วิทยาศาสตร์สมัยใหม่และทฤษฎีวิว-uwsEIVXX0AU",
+    id: "วิทยาศาสตร์สมัยใหม่และทฤษฎีวิว-gOUNr-IXDLc",
     title: "วิทยาศาสตร์สมัยใหม่และทฤษฎีวิวัฒนาการ",
-    thumbnail: "https://img.youtube.com/vi/uwsEIVXX0AU/maxresdefault.jpg",
+    thumbnail: "https://img.youtube.com/vi/gOUNr-IXDLc/maxresdefault.jpg",
     duration: "11:10",
-    youtubeId: "uwsEIVXX0AU",
-    description:
-      "วิดีโอเกี่ยวกับhttps://youtu.be/uwsEIVXX0AU... จาก Evolution News Thailand",
+    youtubeId: "gOUNr-IXDLc",
+    description: "วิดีโอการศึกษาเกี่ยวกับวิทยาศาสตร์และทฤษฎีวิวัฒนาการ",
     views: 25168,
   },
   {

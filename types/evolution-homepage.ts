@@ -32,17 +32,61 @@ export interface Video {
 }
 
 /**
- * Publication interface for publications gallery
- * Requirements: 4.2 - Evolution About branded materials display
+ * Book interface for books section with cover image and title properties
+ * Requirements: 4.1, 4.2 - Book covers in 3-column grid layout
  */
-export interface Publication {
+export interface Book {
   id: string;
   title: string;
   coverImage: string;
-  volume?: string;
+  author?: string;
   year?: string;
   href?: string;
 }
+
+/**
+ * Category interface for sidebar categories section
+ * Requirements: 5.2 - Categories list for content organization
+ */
+export interface Category {
+  id: string;
+  name: string;
+  href: string;
+  count?: number;
+}
+
+/**
+ * ContentItem interface for latest and popular sections
+ * Requirements: 5.3, 5.4 - Latest and popular content with mixed types
+ */
+export interface ContentItem {
+  id: string;
+  title: string;
+  type: "article" | "video";
+  href: string;
+  publishDate: string;
+  views?: number;
+  thumbnail?: string;
+}
+
+/**
+ * PodcastEpisode interface with audio playback properties
+ * Requirements: 6.1, 6.2, 6.3 - Podcast episodes with play functionality
+ */
+export interface PodcastEpisode {
+  id: string;
+  title: string;
+  duration: string;
+  audioUrl: string;
+  publishDate: string;
+  description?: string;
+}
+
+// Backward compatibility - Publication is now Book
+/**
+ * @deprecated Use Book interface instead
+ */
+export type Publication = Book;
 
 /**
  * Social media link interface for sidebar integration
@@ -94,14 +138,35 @@ export interface ThemeConfig {
 }
 
 /**
- * Layout configuration interface for responsive design
- * Requirements: 6.1, 6.3 - Grid layouts and responsive behavior
+ * Layout configuration interface for two-column responsive design
+ * Requirements: 1.1, 1.2, 7.1 - Two-column layout with responsive behavior
  */
 export interface LayoutConfig {
-  maxWidth: string;
-  gridGap: string;
-  sidebarWidth: string;
-  headerHeight: string;
+  mainContent: {
+    width: string; // "70%" on desktop
+    maxWidth: string; // "1200px"
+  };
+  sidebar: {
+    width: string; // "400px" fixed width on desktop
+    minWidth: string; // "300px"
+  };
+  grid: {
+    articles: {
+      desktop: number; // 3 columns
+      tablet: number; // 2 columns
+      mobile: number; // 1 column
+    };
+    books: {
+      desktop: number; // 3 columns
+      tablet: number; // 2 columns
+      mobile: number; // 2 columns
+    };
+  };
+  spacing: {
+    sectionGap: string; // "2rem"
+    cardGap: string; // "1.5rem"
+    sidebarGap: string; // "1.5rem"
+  };
 }
 
 // Component prop interfaces for type safety
@@ -154,7 +219,6 @@ export interface FeaturedArticlesProps {
  */
 export interface ArticleCardProps {
   article: Article;
-  size?: "small" | "medium" | "large";
 }
 
 /**
@@ -175,26 +239,119 @@ export interface VideoCardProps {
 }
 
 /**
- * PublicationsGallery component props interface
+ * BooksSection component props interface
  */
-export interface PublicationsGalleryProps {
-  publications: Publication[];
-  columns?: number;
+export interface BooksSectionProps {
+  books: Book[];
+  title?: string;
 }
 
 /**
- * PublicationCard component props interface
+ * BookCard component props interface
  */
-export interface PublicationCardProps {
-  publication: Publication;
+export interface BookCardProps {
+  book: Book;
 }
 
 /**
- * Sidebar component props interface
+ * MainLayout component props interface for two-column layout
+ */
+export interface MainLayoutProps {
+  children: React.ReactNode;
+}
+
+/**
+ * MainContent component props interface for left column
+ */
+export interface MainContentProps {
+  children: React.ReactNode;
+}
+
+/**
+ * ArticlesSection component props interface for 3-column grid
+ */
+export interface ArticlesSectionProps {
+  articles: Article[];
+  title?: string;
+}
+
+/**
+ * VideosSection component props interface for featured video and thumbnails
+ */
+export interface VideosSectionProps {
+  featuredVideo: Video;
+  videos: Video[];
+  title?: string;
+}
+
+/**
+ * FeaturedVideo component props interface for large embedded video
+ */
+export interface FeaturedVideoProps {
+  video: Video;
+  autoplay?: boolean;
+}
+
+/**
+ * VideoThumbnails component props interface for horizontal scroll
+ */
+export interface VideoThumbnailsProps {
+  videos: Video[];
+}
+
+/**
+ * Sidebar component props interface for comprehensive right column
  */
 export interface SidebarProps {
+  searchProps: SearchSectionProps;
+  categories: Category[];
+  latestItems: ContentItem[];
+  popularItems: ContentItem[];
+  podcastEpisodes: PodcastEpisode[];
+}
+
+/**
+ * SearchSection component props interface for search box and social icons
+ */
+export interface SearchSectionProps {
+  onSearch: (query: string) => void;
   socialLinks: SocialLink[];
-  additionalContent?: React.ReactNode;
+}
+
+/**
+ * CategoriesSection component props interface
+ */
+export interface CategoriesSectionProps {
+  categories: Category[];
+}
+
+/**
+ * LatestSection component props interface
+ */
+export interface LatestSectionProps {
+  items: ContentItem[];
+}
+
+/**
+ * PopularSection component props interface
+ */
+export interface PopularSectionProps {
+  items: ContentItem[];
+}
+
+/**
+ * PodcastSection component props interface
+ */
+export interface PodcastSectionProps {
+  episodes: PodcastEpisode[];
+}
+
+/**
+ * PodcastEpisode component props interface
+ */
+export interface PodcastEpisodeProps {
+  episode: PodcastEpisode;
+  onPlay: (episodeId: string) => void;
 }
 
 /**
@@ -202,4 +359,30 @@ export interface SidebarProps {
  */
 export interface SocialLinksProps {
   links: SocialLink[];
+}
+
+/**
+ * SectionTitle component props interface for consistent typography
+ */
+export interface SectionTitleProps {
+  children: React.ReactNode;
+  className?: string;
+  level?: "h1" | "h2" | "h3";
+  id?: string;
+}
+
+// Legacy component interfaces for backward compatibility
+/**
+ * @deprecated Use BookCardProps instead
+ */
+export interface PublicationCardProps {
+  publication: Book;
+}
+
+/**
+ * @deprecated Use BooksSectionProps instead
+ */
+export interface PublicationsGalleryProps {
+  publications: Book[];
+  columns?: number;
 }

@@ -7,7 +7,7 @@ import { Article } from "@/types/evolution-homepage";
  */
 export const sampleArticles: Article[] = [
   {
-    id: "neodarwinism-ต้องกลายพันธุ์เพื่อความอยู่รอด-ในยุคท-20220614",
+    id: "neodarwinism-",
     title:
       "Neo-Darwinism ต้องกลายพันธุ์เพื่อความอยู่รอด! ในยุคที่ถูกท้าทายด้วยวิทยาศาสตร์สมัยใหม่",
     author: "Evolution News Thailand",
@@ -51,7 +51,7 @@ export const sampleArticles: Article[] = [
     id: "สคริปสารคดีชุดต้นกำเนิดชีวิต-การออกแบบและโอกาสของค-20220523",
     title: "【สคริป】สารคดีชุดต้นกำเนิดชีวิต: การออกแบบและโอกาสของความบังเอิญ",
     author: "Evolution News Thailand",
-    thumbnail: "/images/articles/evolution-default.svg",
+    thumbnail: "/images/articles/origin.jpg",
     excerpt:
       "บทความเกี่ยวกับวิวัฒนาการและวิทยาศาสตร์ที่น่าสนใจจาก Evolution News Thailand",
     publishDate: "2022-05-23",
@@ -65,7 +65,7 @@ export const sampleArticles: Article[] = [
     title:
       "กระบวนการผลิตพลังงานในโรงงานเซลล์ของเราบ่งชี้ถึงการออกแบบขั้นสูง (วัฏจักรเครบส์)",
     author: "Evolution News Thailand",
-    thumbnail: "/images/articles/evolution-default.svg",
+    thumbnail: "/images/articles/ev-1.jpg",
     excerpt:
       "บทความเกี่ยวกับวิวัฒนาการและวิทยาศาสตร์ที่น่าสนใจจาก Evolution News Thailand",
     publishDate: "2022-05-14",
@@ -79,7 +79,7 @@ export const sampleArticles: Article[] = [
     title:
       "ผู้บุกเบิกโอเมก้า 3 กล่าวว่าวิวัฒนาการไม่น่าเชื่อถือ แต่ชีวิตต้องได้รับการออกแบบมากกว่า",
     author: "Evolution News Thailand",
-    thumbnail: "/images/articles/evolution-default.svg",
+    thumbnail: "/images/articles/ev1-2.jpg",
     excerpt:
       "บทความเกี่ยวกับวิวัฒนาการและวิทยาศาสตร์ที่น่าสนใจจาก Evolution News Thailand",
     publishDate: "2022-05-13",
