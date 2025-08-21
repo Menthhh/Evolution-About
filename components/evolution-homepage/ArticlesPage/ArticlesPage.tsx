@@ -1,0 +1,243 @@
+"use client";
+
+import React, { useState } from "react";
+import { sampleArticles } from "@/data/sample-articles";
+import Navigation from "../Navigation";
+import MainLayout from "../MainLayout";
+import SearchBar from "../SearchBar";
+import ArticleCard from "../ArticleCard";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { cn } from "@/lib/utils";
+
+const navigationItems = [
+  {
+    id: "home",
+    label: "หน้าแรก",
+    href: "/evolution-homepage",
+    isActive: false,
+  },
+  { id: "articles", label: "บทความ", href: "/articles", isActive: true },
+  { id: "books", label: "หนังสือ", href: "/books", isActive: false },
+  { id: "videos", label: "วิดีโอ", href: "/videos", isActive: false },
+  { id: "podcasts", label: "พอดแคสต์", href: "/podcasts", isActive: false },
+];
+
+const categories = [
+  "วิวัฒนาการ",
+  "ข่าว",
+  "งานวิจัย",
+  "บทสรุป",
+  "ปรัชญา",
+  "บทวิจารณ์",
+];
+
+const authors = ["arif_dawah", "menth", "erum"];
+
+const recommendedArticles = [
+  "Neo-Darwinism ต้องกลายพันธุ์เพื่อความอยู่รอด",
+  "นักเคมีระดับโลก กล่าวว่า ข้อความจากโมเลกุล",
+  "อินเทอร์เน็ตแห่งโลกธรรมชาติ",
+  "กระบวนการผลิตพลังงานในโรงงานเซลล์",
+  "ผู้บุกเบิกโอเมก้า 3 กล่าวว่าวิวัฒนาการ",
+];
+
+const ARTICLES_PER_PAGE = 12;
+
+export function ArticlesPage() {
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedAuthor, setSelectedAuthor] = useState<string | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  // Filter articles based on search and selections
+  const filteredArticles = sampleArticles.filter((article) => {
+    const matchesSearch =
+      searchQuery === "" ||
+      article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      article.excerpt?.toLowerCase().includes(searchQuery.toLowerCase());
+
+    // For demo purposes, we'll just filter by search
+    return matchesSearch;
+  });
+
+  const totalPages = Math.ceil(filteredArticles.length / ARTICLES_PER_PAGE);
+  const startIndex = (currentPage - 1) * ARTICLES_PER_PAGE;
+  const paginatedArticles = filteredArticles.slice(
+    startIndex,
+    startIndex + ARTICLES_PER_PAGE
+  );
+
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+    setCurrentPage(1);
+  };
+
+  const handleCategoryClick = (category: string) => {
+    setSelectedCategory(selectedCategory === category ? null : category);
+    setCurrentPage(1);
+  };
+
+  const handleAuthorClick = (author: string) => {
+    setSelectedAuthor(selectedAuthor === author ? null : author);
+    setCurrentPage(1);
+  };
+
+  return (
+    <div
+      className="min-h-screen bg-cover bg-center bg-fixed"
+      style={{
+        backgroundImage: "url('/images/background-cover.jpg')",
+      }}
+    >
+      {/* Dark overlay */}
+      <div className="min-h-screen bg-black/60">
+        {/* Navigation */}
+        <Navigation items={navigationItems} activeItem="articles" />
+
+        {/* Main Content */}
+        <MainLayout>
+          {/* Main Content Area */}
+          <div className="space-y-6">
+            {/* Search Bar */}
+            <div className="flex justify-center mb-8">
+              <div className="relative w-full max-w-md">
+                <SearchBar
+                  placeholder="ค้นหาบทความ"
+                  onSearch={handleSearch}
+                  variant="dark"
+                />
+              </div>
+            </div>
+
+            {/* Articles Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+              {paginatedArticles.map((article) => (
+                <ArticleCard key={article.id} article={article} />
+              ))}
+            </div>
+
+            {/* Pagination */}
+            {totalPages > 1 && (
+              <div className="flex justify-center items-center space-x-2 py-8">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                  disabled={currentPage === 1}
+                  className="bg-gray-800/80 border-gray-600 text-white hover:bg-gray-700"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                </Button>
+
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                  (page) => (
+                    <Button
+                      key={page}
+                      variant={currentPage === page ? "default" : "outline"}
+                      size="sm"
+                      onClick={() => setCurrentPage(page)}
+                      className={cn(
+                        currentPage === page
+                          ? "bg-yellow-400 text-black hover:bg-yellow-500"
+                          : "bg-gray-800/80 border-gray-600 text-white hover:bg-gray-700"
+                      )}
+                    >
+                      {page}
+                    </Button>
+                  )
+                )}
+
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() =>
+                    setCurrentPage(Math.min(totalPages, currentPage + 1))
+                  }
+                  disabled={currentPage === totalPages}
+                  className="bg-gray-800/80 border-gray-600 text-white hover:bg-gray-700"
+                >
+                  <ChevronRight className="w-4 h-4" />
+                </Button>
+              </div>
+            )}
+          </div>
+
+          {/* Sidebar */}
+          <div className="space-y-6">
+            {/* Recommended Articles */}
+            <div className="bg-gray-800/80 backdrop-blur-sm rounded-lg p-6 border border-gray-600/40">
+              <h3 className="text-white font-semibold text-lg mb-4">
+                บทความแนะนำ
+              </h3>
+              <div className="space-y-3">
+                {recommendedArticles.map((title, index) => (
+                  <div key={index} className="flex items-start space-x-2">
+                    <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full mt-2 flex-shrink-0" />
+                    <a
+                      href="#"
+                      className="text-gray-300 text-sm hover:text-white hover:underline line-clamp-2 transition-colors"
+                    >
+                      {title}
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Categories */}
+            <div className="bg-gray-800/80 backdrop-blur-sm rounded-lg p-6 border border-gray-600/40">
+              <h3 className="text-white font-semibold text-lg mb-4">
+                หมวดหมู่
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {categories.map((category) => (
+                  <Badge
+                    key={category}
+                    variant="secondary"
+                    className={cn(
+                      "cursor-pointer transition-colors rounded-full",
+                      selectedCategory === category
+                        ? "bg-yellow-400 text-black hover:bg-yellow-500"
+                        : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+                    )}
+                    onClick={() => handleCategoryClick(category)}
+                  >
+                    {category}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+
+            {/* Authors */}
+            <div className="bg-gray-800/80 backdrop-blur-sm rounded-lg p-6 border border-gray-600/40">
+              <h3 className="text-white font-semibold text-lg mb-4">
+                ผู้เขียน
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {authors.map((author) => (
+                  <Badge
+                    key={author}
+                    variant="secondary"
+                    className={cn(
+                      "cursor-pointer transition-colors rounded-full",
+                      selectedAuthor === author
+                        ? "bg-yellow-400 text-black hover:bg-yellow-500"
+                        : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+                    )}
+                    onClick={() => handleAuthorClick(author)}
+                  >
+                    {author}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+          </div>
+        </MainLayout>
+      </div>
+    </div>
+  );
+}
+
+export default ArticlesPage;

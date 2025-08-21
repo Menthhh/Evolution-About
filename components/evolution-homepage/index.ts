@@ -21,3 +21,4 @@ export {
   SectionTitle,
   MainContentDemo,
 } from "./MainContent";
+export { ArticlesPage } from "./ArticlesPage";
