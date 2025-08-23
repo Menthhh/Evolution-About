@@ -22,3 +22,4 @@ export {
   MainContentDemo,
 } from "./MainContent";
 export { ArticlesPage } from "./ArticlesPage";
+export { VideosPage } from "./VideosPage";
