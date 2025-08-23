@@ -3,12 +3,11 @@
 import React, { useState } from "react";
 import { sampleArticles } from "@/data/sample-articles";
 import Navigation from "../Navigation";
-import MainLayout from "../MainLayout";
-import SearchBar from "../SearchBar";
+// import SearchBar from "../SearchBar";
 import ArticleCard from "../ArticleCard";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navigationItems = [
@@ -96,145 +95,160 @@ export function ArticlesPage() {
         {/* Navigation */}
         <Navigation items={navigationItems} activeItem="articles" />
 
+        {/* Search Bar - Homepage Style */}
+        <div className="max-w-7xl mx-auto w-full px-3 sm:px-4 md:px-6 lg:px-8 pb-4 pt-20">
+          {/* <div className="bg-card/50 backdrop-blur-sm border-border/50 rounded-lg p-4 transition-all duration-300 ease-out hover:bg-card/70 hover:shadow-lg hover:-translate-y-1 hover:border-accent/30"> */}
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+            }}
+            className="space-y-2"
+          >
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
+              <input
+                type="text"
+                placeholder="ค้นหาบทความ..."
+                value={searchQuery}
+                onChange={(e) => handleSearch(e.target.value)}
+                className="pl-10 pr-4 py-2 w-full bg-slate-800/90 border border-slate-700/50 rounded-md focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 text-slate-200 placeholder:text-slate-400 outline-none min-h-[44px]"
+                aria-label="ค้นหาบทความ"
+              />
+            </div>
+          </form>
+          {/* </div> */}
+        </div>
+
         {/* Main Content */}
-        <MainLayout>
-          {/* Main Content Area */}
-          <div className="space-y-6">
-            {/* Search Bar */}
-            <div className="flex justify-center mb-8">
-              <div className="relative w-full max-w-md">
-                <SearchBar
-                  placeholder="ค้นหาบทความ"
-                  onSearch={handleSearch}
-                  variant="dark"
-                />
+        <div className="max-w-7xl mx-auto w-full px-3 sm:px-4 md:px-6 lg:px-8 pt-0 pb-4 sm:pb-6 lg:pb-8">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] xl:grid-cols-[1fr_400px] gap-4 sm:gap-6 lg:gap-8 w-full min-w-0">
+            {/* Main Content Area */}
+            <div className="space-y-6">
+              {/* Articles Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+                {paginatedArticles.map((article) => (
+                  <ArticleCard key={article.id} article={article} />
+                ))}
               </div>
+
+              {/* Pagination */}
+              {totalPages > 1 && (
+                <div className="flex justify-center items-center space-x-2 py-8">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                    disabled={currentPage === 1}
+                    className="bg-gray-800/80 border-gray-600 text-white hover:bg-gray-700"
+                  >
+                    <ChevronLeft className="w-4 h-4" />
+                  </Button>
+
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                    (page) => (
+                      <Button
+                        key={page}
+                        variant={currentPage === page ? "default" : "outline"}
+                        size="sm"
+                        onClick={() => setCurrentPage(page)}
+                        className={cn(
+                          currentPage === page
+                            ? "bg-yellow-400 text-black hover:bg-yellow-500"
+                            : "bg-gray-800/80 border-gray-600 text-white hover:bg-gray-700"
+                        )}
+                      >
+                        {page}
+                      </Button>
+                    )
+                  )}
+
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() =>
+                      setCurrentPage(Math.min(totalPages, currentPage + 1))
+                    }
+                    disabled={currentPage === totalPages}
+                    className="bg-gray-800/80 border-gray-600 text-white hover:bg-gray-700"
+                  >
+                    <ChevronRight className="w-4 h-4" />
+                  </Button>
+                </div>
+              )}
             </div>
 
-            {/* Articles Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
-              {paginatedArticles.map((article) => (
-                <ArticleCard key={article.id} article={article} />
-              ))}
-            </div>
+            {/* Sidebar */}
+            <div className="space-y-6">
+              {/* Recommended Articles */}
+              <div className="bg-gray-800/80 backdrop-blur-sm rounded-lg p-6 border border-gray-600/40">
+                <h3 className="text-white font-semibold text-lg mb-4">
+                  บทความแนะนำ
+                </h3>
+                <div className="space-y-3">
+                  {recommendedArticles.map((title, index) => (
+                    <div key={index} className="flex items-start space-x-2">
+                      <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full mt-2 flex-shrink-0" />
+                      <a
+                        href="#"
+                        className="text-gray-300 text-sm hover:text-white hover:underline line-clamp-2 transition-colors"
+                      >
+                        {title}
+                      </a>
+                    </div>
+                  ))}
+                </div>
+              </div>
 
-            {/* Pagination */}
-            {totalPages > 1 && (
-              <div className="flex justify-center items-center space-x-2 py-8">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-                  disabled={currentPage === 1}
-                  className="bg-gray-800/80 border-gray-600 text-white hover:bg-gray-700"
-                >
-                  <ChevronLeft className="w-4 h-4" />
-                </Button>
-
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map(
-                  (page) => (
-                    <Button
-                      key={page}
-                      variant={currentPage === page ? "default" : "outline"}
-                      size="sm"
-                      onClick={() => setCurrentPage(page)}
+              {/* Categories */}
+              <div className="bg-gray-800/80 backdrop-blur-sm rounded-lg p-6 border border-gray-600/40">
+                <h3 className="text-white font-semibold text-lg mb-4">
+                  หมวดหมู่
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {categories.map((category) => (
+                    <Badge
+                      key={category}
+                      variant="secondary"
                       className={cn(
-                        currentPage === page
+                        "cursor-pointer transition-colors rounded-full",
+                        selectedCategory === category
                           ? "bg-yellow-400 text-black hover:bg-yellow-500"
-                          : "bg-gray-800/80 border-gray-600 text-white hover:bg-gray-700"
+                          : "bg-gray-700 text-gray-300 hover:bg-gray-600"
                       )}
+                      onClick={() => handleCategoryClick(category)}
                     >
-                      {page}
-                    </Button>
-                  )
-                )}
-
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() =>
-                    setCurrentPage(Math.min(totalPages, currentPage + 1))
-                  }
-                  disabled={currentPage === totalPages}
-                  className="bg-gray-800/80 border-gray-600 text-white hover:bg-gray-700"
-                >
-                  <ChevronRight className="w-4 h-4" />
-                </Button>
+                      {category}
+                    </Badge>
+                  ))}
+                </div>
               </div>
-            )}
-          </div>
 
-          {/* Sidebar */}
-          <div className="space-y-6">
-            {/* Recommended Articles */}
-            <div className="bg-gray-800/80 backdrop-blur-sm rounded-lg p-6 border border-gray-600/40">
-              <h3 className="text-white font-semibold text-lg mb-4">
-                บทความแนะนำ
-              </h3>
-              <div className="space-y-3">
-                {recommendedArticles.map((title, index) => (
-                  <div key={index} className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full mt-2 flex-shrink-0" />
-                    <a
-                      href="#"
-                      className="text-gray-300 text-sm hover:text-white hover:underline line-clamp-2 transition-colors"
+              {/* Authors */}
+              <div className="bg-gray-800/80 backdrop-blur-sm rounded-lg p-6 border border-gray-600/40">
+                <h3 className="text-white font-semibold text-lg mb-4">
+                  ผู้เขียน
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {authors.map((author) => (
+                    <Badge
+                      key={author}
+                      variant="secondary"
+                      className={cn(
+                        "cursor-pointer transition-colors rounded-full",
+                        selectedAuthor === author
+                          ? "bg-yellow-400 text-black hover:bg-yellow-500"
+                          : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+                      )}
+                      onClick={() => handleAuthorClick(author)}
                     >
-                      {title}
-                    </a>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Categories */}
-            <div className="bg-gray-800/80 backdrop-blur-sm rounded-lg p-6 border border-gray-600/40">
-              <h3 className="text-white font-semibold text-lg mb-4">
-                หมวดหมู่
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {categories.map((category) => (
-                  <Badge
-                    key={category}
-                    variant="secondary"
-                    className={cn(
-                      "cursor-pointer transition-colors rounded-full",
-                      selectedCategory === category
-                        ? "bg-yellow-400 text-black hover:bg-yellow-500"
-                        : "bg-gray-700 text-gray-300 hover:bg-gray-600"
-                    )}
-                    onClick={() => handleCategoryClick(category)}
-                  >
-                    {category}
-                  </Badge>
-                ))}
-              </div>
-            </div>
-
-            {/* Authors */}
-            <div className="bg-gray-800/80 backdrop-blur-sm rounded-lg p-6 border border-gray-600/40">
-              <h3 className="text-white font-semibold text-lg mb-4">
-                ผู้เขียน
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {authors.map((author) => (
-                  <Badge
-                    key={author}
-                    variant="secondary"
-                    className={cn(
-                      "cursor-pointer transition-colors rounded-full",
-                      selectedAuthor === author
-                        ? "bg-yellow-400 text-black hover:bg-yellow-500"
-                        : "bg-gray-700 text-gray-300 hover:bg-gray-600"
-                    )}
-                    onClick={() => handleAuthorClick(author)}
-                  >
-                    {author}
-                  </Badge>
-                ))}
+                      {author}
+                    </Badge>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
-        </MainLayout>
+        </div>
       </div>
     </div>
   );

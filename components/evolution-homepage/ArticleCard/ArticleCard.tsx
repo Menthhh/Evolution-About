@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Heart, MessageCircle, Clock } from "lucide-react";
-import { cn, evolutionClasses } from "@/lib/utils";
+import { cn, evolutionClasses, formatDate, formatFullDate } from "@/lib/utils";
 import { ArticleCardProps } from "@/types/evolution-homepage";
 
 /**
@@ -63,11 +63,11 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
           <h3
             className={cn(
               // Responsive text sizing optimized for 3-column grid
-              "text-sm sm:text-base lg:text-lg font-semibold text-foreground",
+              "text-sm sm:text-base lg:text-lg font-semibold text-white",
               // Consistent line clamping for uniform card heights
               "mb-3 line-clamp-2 leading-snug",
-              // Enhanced hover effect
-              "group-hover:text-accent transition-colors duration-300",
+              // Enhanced hover effect - white to yellow
+              "group-hover:text-yellow-400 transition-colors duration-300",
               // Thai font support
               "font-thai-safe"
             )}
@@ -94,19 +94,9 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
               <time
                 dateTime={article.publishDate}
                 className="text-xs whitespace-nowrap"
-                title={new Date(article.publishDate).toLocaleDateString(
-                  "th-TH",
-                  {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  }
-                )}
+                title={formatFullDate(article.publishDate)}
               >
-                {new Date(article.publishDate).toLocaleDateString("th-TH", {
-                  month: "short",
-                  day: "numeric",
-                })}
+                {formatDate(article.publishDate)}
               </time>
             </div>
           </div>

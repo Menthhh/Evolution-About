@@ -13,6 +13,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
   placeholder,
   onSearch,
   variant = "dark",
+  fullWidth = false,
 }) => {
   const [searchValue, setSearchValue] = useState("");
   const [isFocused, setIsFocused] = useState(false);
@@ -40,9 +41,9 @@ const SearchBar: React.FC<SearchBarProps> = ({
   // Variant-specific styling
   const variantClasses = {
     light: {
-      container: "bg-white border-gray-300 focus-within:border-accent",
-      input: "text-gray-900 placeholder:text-gray-500",
-      icon: "text-gray-500",
+      container: "bg-background/50 border-border/50 focus-within:border-accent",
+      input: "text-foreground placeholder:text-muted-foreground",
+      icon: "text-muted-foreground",
     },
     dark: {
       container: "bg-muted border-border focus-within:border-accent",
@@ -59,8 +60,12 @@ const SearchBar: React.FC<SearchBarProps> = ({
       <div className="hidden sm:flex items-center">
         <div
           className={cn(
-            "relative flex items-center w-48 sm:w-56 lg:w-64 transition-all duration-300 ease-out",
-            isFocused && "w-56 sm:w-64 lg:w-72 transform scale-105"
+            "relative flex items-center transition-all duration-300 ease-out",
+            fullWidth ? "w-full" : "w-48 sm:w-56 lg:w-64",
+            isFocused &&
+              !fullWidth &&
+              "w-56 sm:w-64 lg:w-72 transform scale-105",
+            isFocused && fullWidth && "transform scale-105"
           )}
         >
           <div

@@ -204,6 +204,7 @@ export interface SearchBarProps {
   placeholder: string;
   onSearch: (query: string) => void;
   variant?: "light" | "dark";
+  fullWidth?: boolean;
 }
 
 /**
