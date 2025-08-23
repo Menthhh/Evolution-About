@@ -15,7 +15,7 @@ export function formatDate(dateString: string, locale: string = "th-TH") {
       day: "numeric",
       timeZone: "UTC", // Use UTC to ensure consistency
     });
-  } catch (error) {
+  } catch {
     return dateString; // Fallback to original string if parsing fails
   }
 }
@@ -30,7 +30,7 @@ export function formatFullDate(dateString: string, locale: string = "th-TH") {
       day: "numeric",
       timeZone: "UTC", // Use UTC to ensure consistency
     });
-  } catch (error) {
+  } catch {
     return dateString; // Fallback to original string if parsing fails
   }
 }
