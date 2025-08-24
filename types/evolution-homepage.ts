@@ -80,6 +80,7 @@ export interface PodcastEpisode {
   audioUrl: string;
   publishDate: string;
   description?: string;
+  coverImage?: string;
 }
 
 // Backward compatibility - Publication is now Book
