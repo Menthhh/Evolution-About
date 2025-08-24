@@ -23,3 +23,5 @@ export {
 } from "./MainContent";
 export { ArticlesPage } from "./ArticlesPage";
 export { VideosPage } from "./VideosPage";
+export { PublicationsPage } from "./PublicationsPage/PublicationsPage";
+export { default as PublicationDetailPage } from "./PublicationDetailPage/PublicationDetailPage";

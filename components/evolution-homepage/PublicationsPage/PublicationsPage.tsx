@@ -1,13 +1,18 @@
 "use client";
 
 import React, { useState } from "react";
-import { sampleArticles } from "@/data/sample-articles";
+import { samplePublications } from "@/data/sample-publications";
 import Navigation from "../Navigation";
-// import SearchBar from "../SearchBar";
-import ArticleCard from "../ArticleCard";
+import PublicationCard from "../PublicationCard/PublicationCard";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight, Search } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Search,
+  Book,
+  Download,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navigationItems = [
@@ -17,55 +22,62 @@ const navigationItems = [
     href: "/evolution-homepage",
     isActive: false,
   },
-  { id: "articles", label: "บทความ", href: "/articles", isActive: true },
-  { id: "books", label: "หนังสือ", href: "/publications", isActive: false },
+  { id: "articles", label: "บทความ", href: "/articles", isActive: false },
+  { id: "books", label: "หนังสือ", href: "/publications", isActive: true },
   { id: "videos", label: "วิดีโอ", href: "/videos", isActive: false },
   { id: "podcasts", label: "พอดแคสต์", href: "/podcasts", isActive: false },
 ];
 
 const categories = [
   "วิวัฒนาการ",
-  "ข่าว",
-  "งานวิจัย",
-  "บทสรุป",
-  "ปรัชญา",
-  "บทวิจารณ์",
+  "พันธุกรรม",
+  "วิทยาศาสตร์",
+  "การศึกษา",
+  "คู่มือ",
+  "แปล",
 ];
 
-const authors = ["arif_dawah", "menth", "erum"];
-
-const recommendedArticles = [
-  "Neo-Darwinism ต้องกลายพันธุ์เพื่อความอยู่รอด",
-  "นักเคมีระดับโลก กล่าวว่า ข้อความจากโมเลกุล",
-  "อินเทอร์เน็ตแห่งโลกธรรมชาติ",
-  "กระบวนการผลิตพลังงานในโรงงานเซลล์",
-  "ผู้บุกเบิกโอเมก้า 3 กล่าวว่าวิวัฒนาการ",
+const authors = [
+  "Evolution About Team",
+  "Dr. Siriporn Thanakit",
+  "Prof. Somchai Jitpakdee",
+  "Dr. Niran Fossil",
+  "Charles Darwin",
 ];
 
-const ARTICLES_PER_PAGE = 12;
+const recommendedPublications = [
+  "Evolution About: ความรู้พื้นฐานเรื่องวิวัฒนาการ เล่ม 1",
+  "คู่มือการศึกษาวิวัฒนาการสำหรับครู",
+  "DNA และพันธุกรรม: พื้นฐานสู่ความเข้าใจ",
+  "บันทึกฟอสซิล: หลักฐานแห่งวิวัฒนาการ",
+  "ต้นกำเนิดสายพันธุ์: ฉบับแปลไทย",
+];
 
-export function ArticlesPage() {
+const PUBLICATIONS_PER_PAGE = 9;
+
+export function PublicationsPage() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedAuthor, setSelectedAuthor] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
 
-  // Filter articles based on search and selections
-  const filteredArticles = sampleArticles.filter((article) => {
+  // Filter publications based on search and selections
+  const filteredPublications = samplePublications.filter((publication) => {
     const matchesSearch =
       searchQuery === "" ||
-      article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      article.excerpt?.toLowerCase().includes(searchQuery.toLowerCase());
+      publication.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      publication.author?.toLowerCase().includes(searchQuery.toLowerCase());
 
-    // For demo purposes, we'll just filter by search
     return matchesSearch;
   });
 
-  const totalPages = Math.ceil(filteredArticles.length / ARTICLES_PER_PAGE);
-  const startIndex = (currentPage - 1) * ARTICLES_PER_PAGE;
-  const paginatedArticles = filteredArticles.slice(
+  const totalPages = Math.ceil(
+    filteredPublications.length / PUBLICATIONS_PER_PAGE
+  );
+  const startIndex = (currentPage - 1) * PUBLICATIONS_PER_PAGE;
+  const paginatedPublications = filteredPublications.slice(
     startIndex,
-    startIndex + ARTICLES_PER_PAGE
+    startIndex + PUBLICATIONS_PER_PAGE
   );
 
   const handleSearch = (query: string) => {
@@ -83,6 +95,15 @@ export function ArticlesPage() {
     setCurrentPage(1);
   };
 
+  // Static latest publications to prevent hydration mismatch
+  const latestPublications = [
+    samplePublications.find((p) => p.id === "evolution-about-vol-1"),
+    samplePublications.find((p) => p.id === "evolution-about-vol-2"),
+    samplePublications.find((p) => p.id === "evolution-about-vol-3"),
+    samplePublications.find((p) => p.id === "molecular-evolution"),
+    samplePublications.find((p) => p.id === "evolution-guide"),
+  ].filter(Boolean) as typeof samplePublications;
+
   return (
     <div
       className="min-h-screen bg-cover bg-center bg-fixed"
@@ -93,11 +114,10 @@ export function ArticlesPage() {
       {/* Dark overlay */}
       <div className="min-h-screen bg-black/60">
         {/* Navigation */}
-        <Navigation items={navigationItems} activeItem="articles" />
+        <Navigation items={navigationItems} activeItem="books" />
 
-        {/* Search Bar - Homepage Style */}
+        {/* Search Bar */}
         <div className="max-w-7xl mx-auto w-full px-3 sm:px-4 md:px-6 lg:px-8 pb-4 pt-20">
-          {/* <div className="bg-card/50 backdrop-blur-sm border-border/50 rounded-lg p-4 transition-all duration-300 ease-out hover:bg-card/70 hover:shadow-lg hover:-translate-y-1 hover:border-accent/30"> */}
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -108,15 +128,14 @@ export function ArticlesPage() {
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
               <input
                 type="text"
-                placeholder="ค้นหาบทความ..."
+                placeholder="ค้นหาหนังสือและสิ่งพิมพ์..."
                 value={searchQuery}
                 onChange={(e) => handleSearch(e.target.value)}
                 className="pl-10 pr-4 py-2 w-full bg-slate-800/90 border border-slate-700/50 rounded-md focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 transition-all duration-200 text-slate-200 placeholder:text-slate-400 outline-none min-h-[44px]"
-                aria-label="ค้นหาบทความ"
+                aria-label="ค้นหาหนังสือและสิ่งพิมพ์"
               />
             </div>
           </form>
-          {/* </div> */}
         </div>
 
         {/* Main Content */}
@@ -124,12 +143,50 @@ export function ArticlesPage() {
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] xl:grid-cols-[1fr_400px] gap-4 sm:gap-6 lg:gap-8 w-full min-w-0">
             {/* Main Content Area */}
             <div className="space-y-6">
-              {/* Articles Grid */}
+              {/* Stats Bar */}
+              <div className="bg-gray-800/80 backdrop-blur-sm rounded-lg p-4 border border-gray-600/40">
+                <div className="flex items-center justify-between text-sm">
+                  <div className="flex items-center space-x-4 text-gray-300">
+                    <div className="flex items-center space-x-2">
+                      <Book className="w-4 h-4" />
+                      <span>{samplePublications.length} หนังสือทั้งหมด</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <Download className="w-4 h-4" />
+                      <span>พร้อมดาวน์โหลด</span>
+                    </div>
+                  </div>
+                  <div className="text-gray-400">
+                    แสดง {paginatedPublications.length} จาก{" "}
+                    {filteredPublications.length} หนังสือ
+                  </div>
+                </div>
+              </div>
+
+              {/* Publications Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
-                {paginatedArticles.map((article) => (
-                  <ArticleCard key={article.id} article={article} />
+                {paginatedPublications.map((publication) => (
+                  <PublicationCard
+                    key={publication.id}
+                    publication={publication}
+                  />
                 ))}
               </div>
+
+              {/* Empty State */}
+              {paginatedPublications.length === 0 && (
+                <div className="text-center py-12">
+                  <div className="bg-gray-800/80 backdrop-blur-sm rounded-lg p-8 border border-gray-600/40">
+                    <Book className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                    <h3 className="text-white text-lg font-medium mb-2">
+                      ไม่พบหนังสือ
+                    </h3>
+                    <p className="text-gray-400">
+                      ลองเปลี่ยนคำค้นหาหรือเลือกหมวดหมู่อื่น
+                    </p>
+                  </div>
+                </div>
+              )}
 
               {/* Pagination */}
               {totalPages > 1 && (
@@ -179,13 +236,13 @@ export function ArticlesPage() {
 
             {/* Sidebar */}
             <div className="space-y-6">
-              {/* Recommended Articles */}
+              {/* Recommended Publications */}
               <div className="bg-gray-800/80 backdrop-blur-sm rounded-lg p-6 border border-gray-600/40">
                 <h3 className="text-white font-semibold text-lg mb-4">
-                  บทความแนะนำ
+                  หนังสือแนะนำ
                 </h3>
                 <div className="space-y-3">
-                  {recommendedArticles.map((title, index) => (
+                  {recommendedPublications.map((title, index) => (
                     <div key={index} className="flex items-start space-x-2">
                       <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full mt-2 flex-shrink-0" />
                       <a
@@ -234,7 +291,7 @@ export function ArticlesPage() {
                       key={author}
                       variant="secondary"
                       className={cn(
-                        "cursor-pointer transition-colors rounded-full",
+                        "cursor-pointer transition-colors rounded-full text-xs",
                         selectedAuthor === author
                           ? "bg-yellow-400 text-black hover:bg-yellow-500"
                           : "bg-gray-700 text-gray-300 hover:bg-gray-600"
@@ -246,6 +303,42 @@ export function ArticlesPage() {
                   ))}
                 </div>
               </div>
+
+              {/* Latest Publications */}
+              <div className="bg-gray-800/80 backdrop-blur-sm rounded-lg p-6 border border-gray-600/40">
+                <h3 className="text-white font-semibold text-lg mb-4">
+                  หนังสือล่าสุด
+                </h3>
+                <div className="space-y-4">
+                  {latestPublications.map((publication, index) => (
+                    <div
+                      key={publication.id}
+                      className="flex items-start space-x-3"
+                    >
+                      <div className="flex-shrink-0 w-8 h-8 bg-yellow-400 text-black rounded-full flex items-center justify-center text-sm font-bold">
+                        {index + 1}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <a
+                          href={publication.href}
+                          className="text-gray-300 text-sm hover:text-white hover:underline line-clamp-2 transition-colors block"
+                        >
+                          {publication.title}
+                        </a>
+                        <div className="flex items-center space-x-2 mt-1 text-xs text-gray-400">
+                          <span>{publication.year}</span>
+                          {publication.author && (
+                            <>
+                              <span>•</span>
+                              <span>{publication.author}</span>
+                            </>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -254,4 +347,4 @@ export function ArticlesPage() {
   );
 }
 
-export default ArticlesPage;
+export default PublicationsPage;

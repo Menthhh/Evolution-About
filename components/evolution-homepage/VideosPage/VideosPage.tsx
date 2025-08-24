@@ -17,7 +17,7 @@ const navigationItems = [
     isActive: false,
   },
   { id: "articles", label: "บทความ", href: "/articles", isActive: false },
-  { id: "books", label: "หนังสือ", href: "/books", isActive: false },
+  { id: "books", label: "หนังสือ", href: "/publications", isActive: false },
   { id: "videos", label: "วิดีโอ", href: "/videos", isActive: true },
   { id: "podcasts", label: "พอดแคสต์", href: "/podcasts", isActive: false },
 ];

@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { sampleVideos } from "@/data/sample-videos";
 import Navigation from "@/components/evolution-homepage/Navigation";
+import { Button } from "@/components/ui/button";
 import { Eye, Clock, ArrowLeft, Play } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -13,7 +14,7 @@ const navigationItems = [
     isActive: false,
   },
   { id: "articles", label: "บทความ", href: "/articles", isActive: false },
-  { id: "books", label: "หนังสือ", href: "/books", isActive: false },
+  { id: "books", label: "หนังสือ", href: "/publications", isActive: false },
   { id: "videos", label: "วิดีโอ", href: "/videos", isActive: true },
   { id: "podcasts", label: "พอดแคสต์", href: "/podcasts", isActive: false },
 ];
@@ -49,13 +50,17 @@ export default async function VideoPage({ params }: VideoPageProps) {
         {/* Video Content */}
         <div className="max-w-6xl mx-auto px-4 py-8">
           {/* Back Button */}
-          <Link
-            href="/videos"
-            className="inline-flex items-center space-x-2 text-gray-300 hover:text-white mb-8 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>กลับไปหน้าวิดีโอ</span>
-          </Link>
+          <div className="mb-6">
+            <Link href="/videos">
+              <Button
+                variant="outline"
+                className="bg-gray-800/80 border-gray-600 text-white hover:bg-gray-700"
+              >
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                กลับไปหน้าวิดีโอ
+              </Button>
+            </Link>
+          </div>
 
           {/* Video Player Section */}
           <div className="bg-gray-800/80 backdrop-blur-sm rounded-lg border border-gray-600/40 overflow-hidden">
