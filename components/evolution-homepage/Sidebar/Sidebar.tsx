@@ -236,7 +236,7 @@ const Sidebar: React.FC<SidebarProps> = ({
           collapsedSections.podcast && "sm:block hidden"
         )}
       >
-        <PodcastSection episodes={podcastEpisodes.slice(0, 5)} />
+        <PodcastSection episodes={podcastEpisodes.slice(0, 6)} />
       </div>
     </aside>
   );
