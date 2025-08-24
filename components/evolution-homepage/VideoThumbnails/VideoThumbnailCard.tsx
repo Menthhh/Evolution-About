@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Video } from "@/types/evolution-homepage";
 import { Play, Clock } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 interface VideoThumbnailCardProps {
@@ -20,22 +21,17 @@ interface VideoThumbnailCardProps {
 export function VideoThumbnailCard({ video }: VideoThumbnailCardProps) {
   const [imageError, setImageError] = useState(false);
 
-  const handleVideoClick = () => {
-    // Open video in new tab or handle video selection
-    const videoUrl = `https://www.youtube.com/watch?v=${video.youtubeId}`;
-    window.open(videoUrl, "_blank", "noopener,noreferrer");
-  };
-
   const handleImageError = () => {
     setImageError(true);
   };
 
   return (
-    <div className="flex-shrink-0 w-48 sm:w-56 lg:w-64 cursor-pointer group">
-      <div
+    <div className="flex-shrink-0 w-48 sm:w-56 lg:w-64 group">
+      <Link
+        href={`/videos/${video.youtubeId}`}
         className={cn(
           // Mobile-optimized spacing and interactions
-          "space-y-2 transition-all duration-300",
+          "block space-y-2 transition-all duration-300 cursor-pointer",
           // Touch-friendly hover effects
           "group-hover:scale-105 group-active:scale-95",
           // Ensure proper touch targets
@@ -43,15 +39,6 @@ export function VideoThumbnailCard({ video }: VideoThumbnailCardProps) {
           // Mobile-friendly minimum touch target size
           "min-h-[44px]"
         )}
-        onClick={handleVideoClick}
-        role="button"
-        tabIndex={0}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            handleVideoClick();
-          }
-        }}
         aria-label={`เล่นวิดีโอ: ${video.title}`}
       >
         {/* Thumbnail Container */}
@@ -98,7 +85,7 @@ export function VideoThumbnailCard({ video }: VideoThumbnailCardProps) {
             {video.views && <span>{video.views.toLocaleString()} ครั้ง</span>}
           </div>
         </div>
-      </div>
+      </Link>
     </div>
   );
 }

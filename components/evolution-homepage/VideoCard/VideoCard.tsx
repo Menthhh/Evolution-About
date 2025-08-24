@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Play, Eye, Clock } from "lucide-react";
 import { cn, evolutionClasses } from "@/lib/utils";
 import { VideoCardProps } from "@/types/evolution-homepage";
@@ -11,21 +12,15 @@ import { VideoCardProps } from "@/types/evolution-homepage";
  * Requirements: 3.1, 3.2, 3.3 - Video thumbnails with play button, proper aspect ratio, Thai text support
  */
 export const VideoCard: React.FC<VideoCardProps> = ({ video }) => {
-  const handleVideoClick = () => {
-    // Open YouTube video in new tab or handle video playback
-    const youtubeUrl = `https://www.youtube.com/watch?v=${video.youtubeId}`;
-    window.open(youtubeUrl, "_blank");
-  };
-
   return (
-    <div
+    <Link
+      href={`/videos/${video.youtubeId}`}
       className={cn(
         evolutionClasses.card.enhanced,
         evolutionClasses.interactive.card,
         evolutionClasses.interactive.glow,
-        "cursor-pointer group"
+        "cursor-pointer group block"
       )}
-      onClick={handleVideoClick}
     >
       {/* Video Thumbnail with Play Button Overlay */}
       <div className="relative aspect-video bg-muted">
@@ -94,7 +89,7 @@ export const VideoCard: React.FC<VideoCardProps> = ({ video }) => {
           </div>
         )}
       </div>
-    </div>
+    </Link>
   );
 };
 

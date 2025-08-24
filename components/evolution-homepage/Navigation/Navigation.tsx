@@ -27,7 +27,7 @@ const Navigation: React.FC<NavigationProps> = ({ items, activeItem }) => {
         <div className="flex items-center justify-between md:justify-center md:space-x-16">
           {/* Logo Section */}
           <Link
-            href="/"
+            href="/evolution-homepage"
             className="flex items-center space-x-2 md:space-x-3 group cursor-pointer transition-all duration-300 hover:scale-105"
           >
             <div className="w-6 h-6 md:w-8 md:h-8 rounded-full overflow-hidden flex items-center justify-center bg-transparent transition-all duration-300 group-hover:shadow-lg group-hover:shadow-blue-400/50 group-hover:scale-110">

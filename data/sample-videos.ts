@@ -884,7 +884,7 @@ export const sampleVideos: Video[] = [
   },
   {
     id: "z4Z2GP_Ve6Y",
-    title: "ตอนที่ 6 คุณสมบัติของสิ่งที่เป็นสาเหตุของจักรวาล 1/2  ",
+    title: "ตอนที่ 6 คุณสมบัติของสิ่งที่เป็นสาเหตุของจักรวาล 1/2",
     thumbnail: "https://img.youtube.com/vi/z4Z2GP_Ve6Y/maxresdefault.jpg",
     duration: "23:17",
     youtubeId: "z4Z2GP_Ve6Y",
