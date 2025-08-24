@@ -2,9 +2,11 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { Search, Headphones } from "lucide-react";
+import { Search, Headphones, ChevronLeft, ChevronRight } from "lucide-react";
 import { PodcastEpisode } from "@/types/evolution-homepage";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import Navigation from "../Navigation";
 import { PodcastCard } from "../PodcastSection";
 
@@ -52,11 +54,14 @@ const recommendedEpisodes = [
   "การคัดเลือกโดยธรรมชาติ: กลไกแห่งการเปลี่ยนแปลง",
 ];
 
+const EPISODES_PER_PAGE = 8;
+
 export function PodcastsPage({ episodes }: PodcastsPageProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [currentPlaying, setCurrentPlaying] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [currentPage, setCurrentPage] = useState(1);
 
   // Filter episodes based on search query
   const filteredEpisodes = episodes.filter(
@@ -64,6 +69,14 @@ export function PodcastsPage({ episodes }: PodcastsPageProps) {
       episode.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       (episode.description &&
         episode.description.toLowerCase().includes(searchQuery.toLowerCase()))
+  );
+
+  // Pagination calculations
+  const totalPages = Math.ceil(filteredEpisodes.length / EPISODES_PER_PAGE);
+  const startIndex = (currentPage - 1) * EPISODES_PER_PAGE;
+  const paginatedEpisodes = filteredEpisodes.slice(
+    startIndex,
+    startIndex + EPISODES_PER_PAGE
   );
 
   const handlePlay = (episodeId: string) => {
@@ -79,10 +92,12 @@ export function PodcastsPage({ episodes }: PodcastsPageProps) {
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
+    setCurrentPage(1); // Reset to first page when searching
   };
 
   const handleCategoryClick = (category: string) => {
     setSelectedCategory(selectedCategory === category ? null : category);
+    setCurrentPage(1); // Reset to first page when filtering
   };
 
   const colorVariants = ["dark", "brown", "blue", "green", "purple"] as const;
@@ -126,45 +141,134 @@ export function PodcastsPage({ episodes }: PodcastsPageProps) {
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] xl:grid-cols-[1fr_400px] gap-4 sm:gap-6 lg:gap-8 w-full min-w-0">
             {/* Main Content Area */}
             <div className="space-y-6">
-              {/* Episodes Count */}
-              <div className="flex items-center gap-2 text-white/70 mb-6">
-                <Headphones className="w-5 h-5" />
-                <span className="text-sm">
-                  {filteredEpisodes.length} ตอน
-                  {searchQuery && ` จากการค้นหา "${searchQuery}"`}
-                </span>
+              {/* Stats Bar */}
+              <div className="bg-gray-800/80 backdrop-blur-sm rounded-lg p-4 border border-gray-600/40">
+                <div className="flex items-center justify-between text-sm">
+                  <div className="flex items-center space-x-4 text-gray-300">
+                    <div className="flex items-center space-x-2">
+                      <Headphones className="w-4 h-4" />
+                      <span>{episodes.length} ตอนทั้งหมด</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <span>🎧</span>
+                      <span>ฟังออนไลน์</span>
+                    </div>
+                  </div>
+                  <div className="text-gray-400">
+                    แสดง {paginatedEpisodes.length} จาก{" "}
+                    {filteredEpisodes.length} ตอน
+                    {searchQuery && ` (ค้นหา: "${searchQuery}")`}
+                  </div>
+                </div>
               </div>
 
               {/* Episodes Grid */}
               {filteredEpisodes.length > 0 ? (
-                <div className="space-y-6">
-                  {filteredEpisodes.map((episode, index) => {
-                    const isPlaying = currentPlaying === episode.id;
-                    const isCurrentLoading =
-                      isLoading && currentPlaying === episode.id;
-                    const colorVariant =
-                      colorVariants[index % colorVariants.length];
+                <>
+                  <div className="space-y-4">
+                    {paginatedEpisodes.map((episode, index) => {
+                      const isPlaying = currentPlaying === episode.id;
+                      const isCurrentLoading =
+                        isLoading && currentPlaying === episode.id;
+                      const colorVariant =
+                        colorVariants[
+                          (startIndex + index) % colorVariants.length
+                        ];
 
-                    return (
-                      <div key={episode.id} className="group">
-                        <Link href={`/podcasts/${episode.id}`}>
-                          <div className="cursor-pointer">
-                            <PodcastCard
-                              episode={episode}
-                              isPlaying={isPlaying}
-                              isLoading={isCurrentLoading}
-                              onPlay={(id) => {
-                                // Prevent navigation when clicking play button
-                                handlePlay(id);
-                              }}
-                              colorVariant={colorVariant}
-                            />
-                          </div>
-                        </Link>
+                      return (
+                        <div key={episode.id} className="group">
+                          <Link href={`/podcasts/${episode.id}`}>
+                            <div className="cursor-pointer">
+                              <PodcastCard
+                                episode={episode}
+                                isPlaying={isPlaying}
+                                isLoading={isCurrentLoading}
+                                onPlay={(id) => {
+                                  // Prevent navigation when clicking play button
+                                  handlePlay(id);
+                                }}
+                                colorVariant={colorVariant}
+                              />
+                            </div>
+                          </Link>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  {/* Pagination */}
+                  {totalPages > 1 && (
+                    <div className="flex items-center justify-center gap-2 mt-8">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() =>
+                          setCurrentPage(Math.max(1, currentPage - 1))
+                        }
+                        disabled={currentPage === 1}
+                        className="bg-gray-800/80 border-gray-600/40 text-white hover:bg-gray-700/80 disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        <ChevronLeft className="w-4 h-4 mr-1" />
+                      </Button>
+
+                      <div className="flex items-center gap-1">
+                        {Array.from(
+                          { length: totalPages },
+                          (_, i) => i + 1
+                        ).map((page) => {
+                          const isCurrentPage = page === currentPage;
+                          const shouldShow =
+                            page === 1 ||
+                            page === totalPages ||
+                            Math.abs(page - currentPage) <= 1;
+
+                          if (!shouldShow) {
+                            if (
+                              page === currentPage - 2 ||
+                              page === currentPage + 2
+                            ) {
+                              return (
+                                <span key={page} className="text-white/50 px-2">
+                                  ...
+                                </span>
+                              );
+                            }
+                            return null;
+                          }
+
+                          return (
+                            <Button
+                              key={page}
+                              variant={isCurrentPage ? "default" : "outline"}
+                              size="sm"
+                              onClick={() => setCurrentPage(page)}
+                              className={cn(
+                                "min-w-[40px]",
+                                isCurrentPage
+                                  ? "bg-yellow-400 text-black hover:bg-yellow-500"
+                                  : "bg-gray-800/80 border-gray-600/40 text-white hover:bg-gray-700/80"
+                              )}
+                            >
+                              {page}
+                            </Button>
+                          );
+                        })}
                       </div>
-                    );
-                  })}
-                </div>
+
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() =>
+                          setCurrentPage(Math.min(totalPages, currentPage + 1))
+                        }
+                        disabled={currentPage === totalPages}
+                        className="bg-gray-800/80 border-gray-600/40 text-white hover:bg-gray-700/80 disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        <ChevronRight className="w-4 h-4 ml-1" />
+                      </Button>
+                    </div>
+                  )}
+                </>
               ) : (
                 /* No Results */
                 <div className="text-center py-16">

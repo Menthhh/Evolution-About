@@ -37,14 +37,14 @@ const navigationItems = [
     href: "/articles",
     isActive: false,
   },
-  { id: "podcasts", label: "พอดแคสต์", href: "/podcasts", isActive: true },
-  { id: "videos", label: "วิดีโอ", href: "/videos", isActive: false },
   {
     id: "publications",
     label: "หนังสือ",
     href: "/publications",
     isActive: false,
   },
+  { id: "videos", label: "วิดีโอ", href: "/videos", isActive: false },
+  { id: "podcasts", label: "พอดแคสต์", href: "/podcasts", isActive: true },
 ];
 
 export function PodcastDetailPage({
@@ -306,7 +306,7 @@ export function PodcastDetailPage({
                 <h2 className="text-2xl font-bold text-white mb-8">
                   ตอนอื่นๆ ที่น่าสนใจ
                 </h2>
-                <div className="space-y-8">
+                <div className="space-y-6">
                   {relatedEpisodes.map((relatedEpisode, index) => {
                     const colorVariant =
                       colorVariants[index % colorVariants.length];

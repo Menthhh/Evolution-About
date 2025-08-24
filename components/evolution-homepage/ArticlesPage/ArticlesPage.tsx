@@ -7,7 +7,7 @@ import Navigation from "../Navigation";
 import ArticleCard from "../ArticleCard";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight, Search } from "lucide-react";
+import { ChevronLeft, ChevronRight, Search, FileText } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navigationItems = [
@@ -124,6 +124,27 @@ export function ArticlesPage() {
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] xl:grid-cols-[1fr_400px] gap-4 sm:gap-6 lg:gap-8 w-full min-w-0">
             {/* Main Content Area */}
             <div className="space-y-6">
+              {/* Stats Bar */}
+              <div className="bg-gray-800/80 backdrop-blur-sm rounded-lg p-4 border border-gray-600/40">
+                <div className="flex items-center justify-between text-sm">
+                  <div className="flex items-center space-x-4 text-gray-300">
+                    <div className="flex items-center space-x-2">
+                      <FileText className="w-4 h-4" />
+                      <span>{sampleArticles.length} บทความทั้งหมด</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <span>📖</span>
+                      <span>อ่านออนไลน์</span>
+                    </div>
+                  </div>
+                  <div className="text-gray-400">
+                    แสดง {paginatedArticles.length} จาก{" "}
+                    {filteredArticles.length} บทความ
+                    {searchQuery && ` (ค้นหา: "${searchQuery}")`}
+                  </div>
+                </div>
+              </div>
+
               {/* Articles Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
                 {paginatedArticles.map((article) => (
