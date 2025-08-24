@@ -258,7 +258,7 @@ export function VideosPage() {
                   วิดีโอยอดนิยม
                 </h3>
                 <div className="space-y-4">
-                  {sampleVideos
+                  {[...sampleVideos]
                     .sort((a, b) => (b.views || 0) - (a.views || 0))
                     .slice(0, 5)
                     .map((video, index) => (
