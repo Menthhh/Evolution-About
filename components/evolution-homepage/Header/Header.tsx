@@ -15,12 +15,16 @@ interface HeaderComponentProps {
 const Header: React.FC<HeaderComponentProps> = ({ navigationItems = [] }) => {
   // Default navigation items with Thai language support
   const defaultNavItems = [
-    { id: "home", label: "หน้าหลัก", href: "/", isActive: true },
+    {
+      id: "home",
+      label: "หน้าหลัก",
+      href: "/evolution-homepage",
+      isActive: true,
+    },
     { id: "articles", label: "บทความ", href: "/articles" },
     { id: "publications", label: "หนังสือ", href: "/publications" },
     { id: "videos", label: "วิดีโอ", href: "/videos" },
     { id: "podcasts", label: "พอดแคสต์", href: "/podcasts" },
-    { id: "about", label: "เกี่ยวกับเรา", href: "/about" },
   ];
 
   const navItems =

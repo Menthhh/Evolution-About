@@ -5,6 +5,36 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+// Format date consistently for SSR/hydration compatibility
+export function formatDate(dateString: string, locale: string = "th-TH") {
+  try {
+    const date = new Date(dateString);
+    // Use a consistent format that works the same on server and client
+    return date.toLocaleDateString(locale, {
+      month: "short",
+      day: "numeric",
+      timeZone: "UTC", // Use UTC to ensure consistency
+    });
+  } catch {
+    return dateString; // Fallback to original string if parsing fails
+  }
+}
+
+// Format full date for title attribute
+export function formatFullDate(dateString: string, locale: string = "th-TH") {
+  try {
+    const date = new Date(dateString);
+    return date.toLocaleDateString(locale, {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      timeZone: "UTC", // Use UTC to ensure consistency
+    });
+  } catch {
+    return dateString; // Fallback to original string if parsing fails
+  }
+}
+
 // Check if required Supabase environment variables are set
 export const hasEnvVars =
   process.env.NEXT_PUBLIC_SUPABASE_URL &&

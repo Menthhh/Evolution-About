@@ -71,8 +71,11 @@ const HomePage: React.FC = () => {
       <MainLayout>
         {/* Main content area (left column) */}
         <MainContent>
-          {/* Articles section with 3-column grid layout */}
-          <ArticlesSection articles={sampleArticles} title="บทความ" />
+          {/* Articles section with 3-column grid layout - showing only first 3 articles */}
+          <ArticlesSection
+            articles={sampleArticles.slice(0, 6)}
+            title="บทความ"
+          />
 
           {/* Videos section with featured video and thumbnails */}
           <VideosSection
@@ -81,8 +84,8 @@ const HomePage: React.FC = () => {
             title="วิดีโอ"
           />
 
-          {/* Books section with 3-column grid layout */}
-          <BooksSection books={sampleBooks} title="หนังสือ" />
+          {/* Books section with 3-column grid layout - showing only first 6 books */}
+          <BooksSection books={sampleBooks.slice(0, 6)} title="หนังสือ" />
         </MainContent>
 
         {/* Sidebar (right column) - now aligns with articles section */}
