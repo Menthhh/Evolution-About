@@ -110,6 +110,12 @@
     @apply bg-background text-foreground;
   }
 
+  /* Admin pages white background override */
+  body:has([data-admin-layout]) {
+    background-color: white !important;
+    background-image: none !important;
+  }
+
   /* Thai font support */
   .font-thai-safe {
     font-family: "Noto Sans Thai", "Sarabun", "Kanit", system-ui, -apple-system,
@@ -353,6 +359,20 @@
   .evolution-glow-pulse {
     animation: evolution-glow-pulse 2s ease-in-out infinite;
   }
+
+  /* Admin page specific styles */
+  .admin-page-container {
+    background-color: white !important;
+    min-height: 100vh !important;
+  }
+
+  /* Force white background for all admin routes */
+  [data-admin-layout] {
+    background-color: white !important;
+    background-image: none !important;
+  }
+
+
 
   /* Staggered animation delays */
   .animation-delay-50 {
