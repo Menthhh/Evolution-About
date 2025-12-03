@@ -59,8 +59,8 @@ const AuthorTableComponent = ({setOpenModal}) => {
       ]);
       setAuthors(authorData?.data || []);
       setLecturers(lecturerData?.data || []);
-      setTotalAuthor(authorData?.metadata?.totalCount || 0)
-      setTotalLec(lecturerData?.metadata?.totalCount || 0)
+      setTotalAuthor(Number(authorData?.metadata?.totalCount) || 0)
+      setTotalLec(Number(lecturerData?.metadata?.totalCount) || 0)
 
       
     } catch (error) {

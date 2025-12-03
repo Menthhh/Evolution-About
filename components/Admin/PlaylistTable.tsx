@@ -179,7 +179,7 @@ useEffect(()=>{fetchData()},[])
           </TableHead>
           <TableBody>
             {playlists?.data?.map((item, index) => (
-              <TableRow key={item.id}>
+              <TableRow key={item._id}>
                 <TableCell>{index + 1}</TableCell>
                 <TableCell>{item.plName}</TableCell>
                 <TableCell>{item.description}</TableCell>
@@ -199,9 +199,9 @@ useEffect(()=>{fetchData()},[])
       
       <Box display="flex" justifyContent="space-between" alignItems="center" mt={2}>
         <Typography variant="body2" color="text.secondary">
-          แสดง {displayCount} จาก {playlists?.metadata?.totalCount}
+          แสดง {displayCount} จาก {playlists?.metadata?.totalCount || 0}
         </Typography>
-        <Pagination count={Math.ceil(playlists?.metadata?.totalCount / displayCount)} color="error"/>
+        <Pagination count={Math.ceil((playlists?.metadata?.totalCount || 0) / displayCount)} color="error"/>
       </Box>
 
 

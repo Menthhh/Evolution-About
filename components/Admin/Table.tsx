@@ -115,7 +115,7 @@ const TableComponent = ({
           </TableHead>
 { type==='books'&&        <TableBody>
             {data.map((item, index) => (
-              <TableRow key={item.id}>
+              <TableRow key={item._id}>
                 <TableCell>{index + 1}</TableCell>
                 <TableCell>{item.bName}</TableCell>
                 <TableCell>{formatDate(item.createdAt)}</TableCell>
@@ -135,7 +135,7 @@ const TableComponent = ({
           </TableBody>}
           { type==='articles'&&        <TableBody>
             {data.map((item, index) => (
-              <TableRow key={item.id}>
+              <TableRow key={item._id}>
                 <TableCell>{index + 1}</TableCell>
                 <TableCell>{item.artName}</TableCell>
                 <TableCell>{formatDate(item.createdAt)}</TableCell>
@@ -155,7 +155,7 @@ const TableComponent = ({
           </TableBody>}
           { type==='videos-podcasts'&&        <TableBody>
             {data.map((item, index) => (
-              <TableRow key={item.id}>
+              <TableRow key={item._id}>
                 <TableCell>{index + 1}</TableCell>
                 <TableCell>{item.vpName}</TableCell>
                 <TableCell>{formatDate(item.createdAt)}</TableCell>
@@ -186,7 +186,7 @@ const TableComponent = ({
         </Typography>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <Pagination 
-            count={totalPages}
+            count={totalPages || 0}
             page={currentPage}
             onChange={handlePageChange}
             color="secondary"

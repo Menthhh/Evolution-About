@@ -25,7 +25,7 @@ import QuillEditor from "@/components/Admin/RichText";
 import { useRouter, useSearchParams } from "next/navigation";
 import useAPI from "@/hook/useApi";
 import Swal from "sweetalert2";
-import { title } from "process";
+
 const QuillEditorComponent = dynamic(
   () => import('@/components/Admin/RichText').then(mod => mod.default), 
   {
